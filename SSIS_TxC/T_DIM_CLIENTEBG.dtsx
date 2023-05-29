@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/24/2019 3:06:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="31T61E21"
+  DTS:CreatorName="BG\felipe.sirpa"
+  DTS:DTSID="{C61955CA-7037-436A-921C-A3272279AE32}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.438"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="T_DIM_CLIENTEBG"
+  DTS:PackageType="5"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{110179D2-6DAD-4DF1-ADD7-C4BC38F12C00}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SQL MERGE Dim_ClienteBg"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6CA27F80-FEF4-4394-B47F-5BBC39C909D2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL MERGE Dim_ClienteBg"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7757F634-3D4A-48C0-93FF-020A78BD5A40}"
+          SQLTask:SqlStatementSource="WITH delta_Dim_ClienteBg AS &#xA;(&#xA;&#x9;select codigoCliente, nombreCliente, nivel_Apertura, ejecutivoCliente, tipo,&#xA;&#x9;&#x9;CASE WHEN tipo = 'E' THEN 'Empleado Banco'&#xA;&#x9;&#x9;&#x9; WHEN tipo = 'F' THEN 'Persona Natural'&#xA;&#x9;&#x9;&#x9; WHEN tipo = 'I' THEN 'Institucion Financiera'&#xA;&#x9;&#x9;&#x9; WHEN tipo = 'J' THEN 'Persona Juridica'&#xA;&#x9;&#x9;&#x9; WHEN tipo = 'U' THEN 'Unipersonal' ELSE 'Sin Tipo' END tipoPersona&#xA;&#x9;&#x9;, fechaApertura,CodActividaCiiu from topcli.cli_clientes&#xA;) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;MERGE &#xA;&#x9;dw.Dim_ClienteBg AS TARGET &#xA;USING &#xA;&#x9;delta_Dim_ClienteBg AS SOURCE &#xA;ON &#xA;&#x9;SOURCE.codigoCliente = TARGET.codigoCliente &#xA;&#x9;WHEN MATCHED &#xA;&#x9;&#x9; AND (TARGET.cliente &lt;&gt; SOURCE.nombreCliente OR TARGET.nivel_Apertura &lt;&gt; SOURCE.nivel_Apertura OR TARGET.ejecutivoCliente &lt;&gt; SOURCE.ejecutivoCliente OR &#xA;&#x9;&#x9;&#x9;  TARGET.tipoPersona &lt;&gt; SOURCE.tipoPersona OR TARGET.tipo &lt;&gt; SOURCE.tipo OR &#xA;&#x9;&#x9;&#x9;   TARGET.fechaApertura &lt;&gt; SOURCE.fechaApertura OR TARGET.codActividaCiiu &lt;&gt; SOURCE.codActividaCiiu&#xA;&#x9;&#x9;&#x9;  OR TARGET.nivel_Apertura IS NULL OR TARGET.ejecutivoCliente IS NULL OR &#xA;&#x9;&#x9;&#x9;  TARGET.tipoPersona IS NULL OR TARGET.tipo IS NULL OR &#xA;&#x9;&#x9;&#x9;   TARGET.fechaApertura IS NULL OR TARGET.codActividaCiiu IS NULL&#xA;&#x9;&#x9;&#x9;  )      &#xA;&#x9;THEN&#xA;UPDATE       &#xA;&#x9;SET TARGET.cliente = SOURCE.nombreCliente, TARGET.nivel_Apertura = SOURCE.nivel_Apertura, TARGET.ejecutivoCliente = SOURCE.ejecutivoCliente,  &#xA;&#x9;&#x9;TARGET.tipoPersona = SOURCE.tipoPersona, TARGET.tipo = SOURCE.tipo,&#xA;&#x9;&#x9; TARGET.fechaApertura = SOURCE.fechaApertura, TARGET.codActividaCiiu = SOURCE.codActividaCiiu&#xA;&#x9;&#x9;&#xA;&#x9;WHEN NOT MATCHED BY TARGET &#xA;&#x9;THEN INSERT (codigoCliente, cliente, nivel_Apertura, ejecutivoCliente, tipo, tipoPersona, fechaApertura, codActividaCiiu)&#xA;&#x9;VALUES (SOURCE.codigoCliente, SOURCE.nombreCliente, SOURCE.nivel_Apertura, SOURCE.ejecutivoCliente, SOURCE.tipo, SOURCE.tipoPersona, SOURCE.fechaApertura, SOURCE.codActividaCiiu);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="207,42"
+          Id="Package\SQL MERGE Dim_ClienteBg"
+          TopLeft="225,131" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

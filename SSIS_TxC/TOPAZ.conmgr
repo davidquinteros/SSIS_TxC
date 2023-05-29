@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="TOPAZ"
+  DTS:DTSID="{57CD7C15-A7D7-40DF-8929-2E6E6355B2EE}"
+  DTS:CreationName="ADO.NET:System.Data.OracleClient.OracleConnection, System.Data.OracleClient, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=BGDB;User ID=dmart_app;Persist Security Info=True;Unicode=True;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

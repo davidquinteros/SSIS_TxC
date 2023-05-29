@@ -1,0 +1,602 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/8/2019 10:49:03 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="31T61E21"
+  DTS:CreatorName="BG\felipe.sirpa"
+  DTS:DTSID="{FB926BF7-D913-4280-BA79-DD34E8FD6CDB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.438"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="2_L_CARGAS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="60"
+  DTS:VersionGUID="{817DBC9C-482F-4CA5-AB85-86025126278C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[bgcub01\im.BGAWTRANS_CANAL]"
+      DTS:CreationName="MSOLAP100"
+      DTS:DTSID="{C0BC34AF-3D9F-46A3-A01E-5493F2C15B39}"
+      DTS:ObjectName="bgcub01\im.BGAWTRANS_CANAL">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=bgcub01\im;Initial Catalog=BGAWTRANS_CANAL;Provider=MSOLAP.8;Integrated Security=SSPI;Impersonation Level=Impersonate;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BGCUB01\IM.BGAWTX]"
+      DTS:CreationName="MSOLAP100"
+      DTS:DTSID="{36397CDE-4249-482B-813B-1EFE571689F3}"
+      DTS:ObjectName="BGCUB01\IM.BGAWTX">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BGCUB01\IM;Initial Catalog=BGAWTX;Provider=MSOLAP.8;Integrated Security=SSPI;Impersonation Level=Impersonate;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[bgcub01\im.BGAWTX_2]"
+      DTS:CreationName="MSOLAP100"
+      DTS:DTSID="{7535E8DA-9B5F-45EB-A6EB-6E294F15629B}"
+      DTS:ObjectName="bgcub01\im.BGAWTX_2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=bgcub01\im;Initial Catalog=BGAWTX_2;Provider=MSOLAP.8;Integrated Security=SSPI;Impersonation Level=Impersonate;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E40002D8-F974-475E-8DEC-4F5276458783}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="XMLAProcessTransaccionesPorCanal">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BB2B1258-3B06-4F4C-B88A-4ADC527F580E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="XMLAScript_PartitionTransaccionesPorCanal">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Contenedor de secuencias"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contenedor de secuencias"
+      DTS:DTSID="{0F5D8222-2BAF-401C-AB19-98E8E427168C}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Contenedor de secuencias">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Contenedor de secuencias\Process Partitions TransaccionesXcanal"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Contenedor de bucles Foreach"
+          DTS:DTSID="{3C721FEC-8F84-4958-958A-EF25BDEB5ABF}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Process Partitions TransaccionesXcanal">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.ForEachADOEnumerator"
+            DTS:DTSID="{98447F8B-B6C6-4B68-8D82-4FF969D618FC}"
+            DTS:ObjectName="{98447F8B-B6C6-4B68-8D82-4FF969D618FC}">
+            <DTS:ObjectData>
+              <FEEADO
+                EnumType="EnumerateRowsInFirstTable"
+                VarName="User::XMLAScript_PartitionTransaccionesPorCanal" />
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Contenedor de secuencias\Process Partitions TransaccionesXcanal\DDL Process Partition TransaccionesPorCanal"
+              DTS:CreationName="SSIS.ReplacementTask"
+              DTS:Description="Tarea Ejecutar DDL de Analysis Services"
+              DTS:DTSID="{EFA4A3FC-8BFA-4EFF-A5A3-6A86CFFED2F4}"
+              DTS:ExecutableType="SSIS.ReplacementTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="DDL Process Partition TransaccionesPorCanal">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ASDdlData
+                  ConnectionName="bgcub01\im.BGAWTX_2"
+                  SourceType="Variable"
+                  Source="User::XMLAProcessTransaccionesPorCanal" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{22D36233-C674-413A-93BE-ED40D03DFA39}"
+              DTS:ObjectName="{22D36233-C674-413A-93BE-ED40D03DFA39}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::XMLAProcessTransaccionesPorCanal" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Contenedor de secuencias\SQL GetCommand XMLA TransaccionesXcanal"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tarea Ejecutar SQL"
+          DTS:DTSID="{163B7E49-E010-4B2A-B198-212975282D7E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL GetCommand XMLA TransaccionesXcanal"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; Ã‚Â© 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7757F634-3D4A-48C0-93FF-020A78BD5A40}"
+              SQLTask:SqlStatementSource="SELECT        dwsyn.getProcessingCommand('BGAWTX_2', 'dsv_Transacciones_x_canal', 'v Fact Transacciones x Canal V2', 'Fact_TransXcanal_' + CONVERT(varchar(4), DATEPART([year],&#xA;                             (SELECT        MAX(fecha) AS Expr1&#xA;                               FROM            dwsyn.FechasPorProcesar))) + 'T' + CONVERT(varchar(1), DATEPART(quarter,&#xA;                             (SELECT        MAX(fecha) AS Expr1&#xA;                               FROM            dwsyn.FechasPorProcesar AS FechasPorProcesar_1))), 'ProcessFull', 'BGAW', &#xA;                         'SELECT&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  fact_id &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,fechaFk &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,lugarFk &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,asiento &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,monedaFk &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,canalFk &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,clienteBgFk &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,personaTxFk &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,tipoTransaccionFk &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,horaFk &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,operacionFk &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,productoFk &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,estadoFk &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,cuenta &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,cantidadTransacciones &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,cantidadClientes &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,montoBs &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,montoUsd &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,usuarioFk &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,debitocredito &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,RangoMontoUSDFK &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,id_qr &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  ,llaveSaldo  FROM  dwsyn.fn_Part_fact_TransaccionesXcanal_v2( (select max(fecha) from dwsyn.fechasporprocesar), (select max(fecha) from dwsyn.fechasporprocesar) )')&#xA;                          AS XMLAScript_CurrentPartition_ProcessData"
+              SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::XMLAScript_PartitionTransaccionesPorCanal" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Contenedor de secuencias.PrecedenceConstraints[RestricciÃƒÂ³n]"
+          DTS:CreationName=""
+          DTS:DTSID="{E804AAB2-4965-4706-9210-D49794AFFBB4}"
+          DTS:From="Package\Contenedor de secuencias\SQL GetCommand XMLA TransaccionesXcanal"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="RestricciÃƒÂ³n"
+          DTS:To="Package\Contenedor de secuencias\Process Partitions TransaccionesXcanal" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQNC - Dimensiones"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{6D8E7BBA-0535-413E-B330-A8A951ABDCA4}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQNC - Dimensiones">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update Asiento"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{a376f154-05b2-46bd-985e-2cfaf8bb6654}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Asiento">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;Asiento&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update Canal"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{a1b61ceb-1b5a-4eef-bc29-3e59afd16ea2}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Canal">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;Canal&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update ClienteBg"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{e973f643-1dd1-425f-8351-2b4ea8540b7f}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update ClienteBg">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;ClienteBg&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update Cuenta"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{374d8f1c-cb52-4b66-9815-17aec892f64d}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Cuenta">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;Cuenta&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update DebitoCredito"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{db4d918f-bd15-46df-b451-182a487f5abc}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update DebitoCredito">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;Debito Credito&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update Estado"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{89da913f-c7eb-4635-a2f4-aff416dcaea7}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Estado">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;Estado&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update Fecha"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{23052d1c-4534-481e-a871-bb7775eee29a}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Fecha">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;Fecha&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update Hora"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{c75426e5-f44e-4731-8e0b-f7d7ef187096}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Hora">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;Hora&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update Lugar"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{0d694f26-aeec-45cb-8cef-05746ffe07d7}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Lugar">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;Lugar&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update Moneda"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{b838f6dc-40c7-4cae-87bb-0069af5d586e}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Moneda">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;Moneda&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update Operacion"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{fc5bc385-9742-4264-bc93-9baf133d3e72}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Operacion">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;Operacion&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update PersonaTx"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{70661994-a06a-417f-93e1-02f60bd29992}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update PersonaTx">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;PersonaTx&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update Producto"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{f7f739c9-0d1a-4496-be49-c54511ec1e48}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Producto">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;Producto&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update Qr"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{9c408802-b3d3-4ad8-8ca2-b818c6279dc5}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Qr">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;Dim QR&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update RangoCaja"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{FBADBA32-FC3C-484C-B03D-78B10CF224F4}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update RangoCaja">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;Caja Rango USD&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - Dimensiones\Update Usuario"
+          DTS:CreationName="SSIS.ReplacementTask"
+          DTS:Description="Tarea de procesamiento de Analysis Services"
+          DTS:DTSID="{433682c6-5efa-4185-8b52-647d912ecc8f}"
+          DTS:ExecutableType="SSIS.ReplacementTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update Usuario">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ASProcessingData
+              ConnectionName="bgcub01\im.BGAWTX_2"
+              ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot; xmlns:ddl300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300&quot; xmlns:ddl300_300=&quot;http://schemas.microsoft.com/analysisservices/2011/engine/300/300&quot; xmlns:ddl400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400&quot; xmlns:ddl400_400=&quot;http://schemas.microsoft.com/analysisservices/2012/engine/400/400&quot; xmlns:ddl500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500&quot; xmlns:ddl500_500=&quot;http://schemas.microsoft.com/analysisservices/2013/engine/500/500&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;BGAWTX_2&lt;/DatabaseID&gt;&#xA;      &lt;DimensionID&gt;Usuario&lt;/DimensionID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessUpdate&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[RestricciÃƒÂ³n]"
+      DTS:CreationName=""
+      DTS:DTSID="{EC3549BB-C955-4EC5-A642-98A1212A45A0}"
+      DTS:From="Package\SQNC - Dimensiones"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="RestricciÃƒÂ³n"
+      DTS:To="Package\Contenedor de secuencias"
+      DTS:Value="2" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta secciÃ³n CDATA contiene la informaciÃ³n de diseÃ±o del paquete. Esta secciÃ³n incluye informaciÃ³n como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta secciÃ³n y comete un error, puede eliminarlo. -->
+<!--El paquete podrÃ¡ cargarse normalmente, pero se perderÃ¡ la informaciÃ³n de diseÃ±o anterior y el diseÃ±ador reorganizarÃ¡ los elementos automÃ¡ticamente en la superficie de diseÃ±o.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecuciÃ³n.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="268,42"
+          Id="Package\Contenedor de secuencias\Process Partitions TransaccionesXcanal\DDL Process Partition TransaccionesPorCanal"
+          TopLeft="29.5,30" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="316,94"
+          Size="316,137"
+          Id="Package\Contenedor de secuencias\Process Partitions TransaccionesXcanal"
+          TopLeft="42.5,105" />
+        <NodeLayout
+          Size="295,42"
+          Id="Package\Contenedor de secuencias\SQL GetCommand XMLA TransaccionesXcanal"
+          TopLeft="47.5,24.5" />
+        <EdgeLayout
+          Id="Package\Contenedor de secuencias.PrecedenceConstraints[RestricciÃƒÂ³n]"
+          TopLeft="197.75,66.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.5"
+              Start="0,0"
+              End="0,31">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="403,271"
+          Size="403,314"
+          Id="Package\Contenedor de secuencias"
+          TopLeft="772,151" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SQNC - Dimensiones\Update RangoCaja"
+          TopLeft="15,22" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\SQNC - Dimensiones\Update DebitoCredito"
+          TopLeft="7,288" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\SQNC - Dimensiones\Update Estado"
+          TopLeft="222,17" />
+        <NodeLayout
+          Size="138,42"
+          Id="Package\SQNC - Dimensiones\Update Hora"
+          TopLeft="439,32" />
+        <NodeLayout
+          Size="142,42"
+          Id="Package\SQNC - Dimensiones\Update Lugar"
+          TopLeft="24,83" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\SQNC - Dimensiones\Update Moneda"
+          TopLeft="18,351" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\SQNC - Dimensiones\Update Operacion"
+          TopLeft="222,82" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SQNC - Dimensiones\Update Producto"
+          TopLeft="427,90" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SQNC - Dimensiones\Update Usuario"
+          TopLeft="14,152" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SQNC - Dimensiones\Update Asiento"
+          TopLeft="223,153" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SQNC - Dimensiones\Update Fecha"
+          TopLeft="223,289" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SQNC - Dimensiones\Update Canal"
+          TopLeft="426,156" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SQNC - Dimensiones\Update ClienteBg"
+          TopLeft="12,227" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SQNC - Dimensiones\Update PersonaTx"
+          TopLeft="223,231" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SQNC - Dimensiones\Update Cuenta"
+          TopLeft="223,352" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SQNC - Dimensiones\Update Qr"
+          TopLeft="423,236" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="616,449"
+          Size="616,492"
+          Id="Package\SQNC - Dimensiones"
+          TopLeft="34.7653068592529,62.3613448794744" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[RestricciÃƒÂ³n]"
+          TopLeft="650.765306859253,306.180672439737">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="121.234693140747,0"
+              Start="0,0"
+              End="113.734693140747,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="113.734693140747,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="32.7128934453736,5,48.30890625,10.3349609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[bgcub01\im.BGAWTRANS_CANAL]">
+    <ProjectReferenceName></ProjectReferenceName>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[BGCUB01\IM.BGAWTX]">
+    <ProjectReferenceName></ProjectReferenceName>
+  </ConnectionManager>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[bgcub01\im.BGAWTX_2]">
+    <ProjectReferenceName></ProjectReferenceName>
+  </ConnectionManager>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

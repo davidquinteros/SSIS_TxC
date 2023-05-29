@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/24/2019 3:06:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="31T61E21"
+  DTS:CreatorName="BG\felipe.sirpa"
+  DTS:DTSID="{A3DBAA31-B1A8-40B8-BA35-130EEB1DB563}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.438"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="T_DIM_ESTADO"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{38D7CAD4-F53A-4E96-B8E3-81F19BE12469}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SQL MERGE Dim_Estado"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{12F58E34-1485-43BF-AE10-1FC5856AC459}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL MERGE Dim_Estado"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7757F634-3D4A-48C0-93FF-020A78BD5A40}"
+          SQLTask:SqlStatementSource="WITH delta_Dim_Estado AS &#xA;(&#xA; SELECT 0 opcioninterna, 'Sin Estado' descripcion UNION ALL&#xA; SELECT opcioninterna, CAST(dbo.Capitalize(descripcion) AS NVARCHAR(30)) AS descripcion&#xA;   FROM topaz.Opciones&#xA;  WHERE (numerodecampo = 22015)&#xA;) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;MERGE dw.Dim_Estado AS TARGET USING delta_Dim_Estado AS SOURCE ON &#xA;SOURCE.opcioninterna = TARGET.codigoEstado WHEN MATCHED AND TARGET.estado &lt;&gt; SOURCE.descripcion THEN&#xA;UPDATE       &#xA;   SET TARGET.estado = SOURCE.descripcion WHEN NOT MATCHED BY TARGET THEN INSERT (codigoEstado, estado)&#xA;VALUES (SOURCE.opcioninterna, SOURCE.descripcion);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="194,42"
+          Id="Package\SQL MERGE Dim_Estado"
+          TopLeft="58,146" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

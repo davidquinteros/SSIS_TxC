@@ -1,0 +1,1465 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/24/2019 3:06:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="31T61E21"
+  DTS:CreatorName="BG\felipe.sirpa"
+  DTS:DTSID="{EB767D70-200D-4FE4-A0FF-B869F0E3BF7A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.438"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="T_DIM_OPERACION"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{7AA3C8F6-8C92-467E-8CA6-A7CB4A17D5C3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFLW - Dim Operación"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E8C19AD8-B548-4F41-809C-ED6535832DE8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFLW - Dim Operación"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="CMD - Actualiza Dw Dim_Operacion"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE
+	dw.Dim_Operacion
+SET
+	 operacion=?
+	,titulo=?
+	,updateDate=?
+WHERE
+	codigoOperacion = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Connections[OleDbConnection]"
+                  connectionManagerID="{7757F634-3D4A-48C0-93FF-020A78BD5A40}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[BGAW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input].Columns[Copy of nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of nombre"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of nombre]" />
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input].Columns[Copy of nombreTitulo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of nombreTitulo"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of nombreTitulo]" />
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input].Columns[updateDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="updateDate"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion.Outputs[Derived Column Output].Columns[updateDate]" />
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input].Columns[Copy of identificacion]"
+                      cachedDataType="i4"
+                      cachedName="Copy of identificacion"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of identificacion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="dbTimeStamp"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="i4"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFLW - Dim Operación\DCNV - Conversiones"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="DCNV - Conversiones"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFLW - Dim Operación\DCNV - Conversiones.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\DCNV - Conversiones.Inputs[Data Conversion Input].Columns[identificacion]"
+                      cachedDataType="numeric"
+                      cachedName="identificacion"
+                      cachedPrecision="5"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[identificacion]" />
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\DCNV - Conversiones.Inputs[Data Conversion Input].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="nombre"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\DCNV - Conversiones.Inputs[Data Conversion Input].Columns[titulo]"
+                      cachedDataType="numeric"
+                      cachedName="titulo"
+                      cachedPrecision="5"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[titulo]" />
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\DCNV - Conversiones.Inputs[Data Conversion Input].Columns[nombreTitulo]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="nombreTitulo"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[nombreTitulo]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DFLW - Dim Operación\DCNV - Conversiones.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of identificacion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of identificacion]"
+                      name="Copy of identificacion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[identificacion]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of titulo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of titulo]"
+                      name="Copy of titulo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[titulo]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of nombreTitulo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of nombreTitulo]"
+                      name="Copy of nombreTitulo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[nombreTitulo]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of nombre]"
+                      name="Copy of nombre"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[nombre]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DFLW - Dim Operación\DCNV - Conversiones.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DER - Adiciona Fecha Actualizacion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion.Outputs[Derived Column Output].Columns[updateDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion.Outputs[Derived Column Output].Columns[updateDate]"
+                      name="updateDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios)"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP - Operaciones (Cambios)"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT codigoOperacion, operacion, codigoTitulo, titulo FROM dw.Dim_Operacion</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT codigoOperacion, operacion, codigoTitulo, titulo FROM dw.Dim_Operacion) [refTable]
+where [refTable].[codigoOperacion] = ? and [refTable].[operacion] = ? and [refTable].[codigoTitulo] = ? and [refTable].[titulo] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="codigoOperacion" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="operacion" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="codigoTitulo" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="titulo" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of identificacion]};#{Package\DFLW - Dim Operación\233:invalid};#{Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of titulo]};#{Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of nombreTitulo]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Connections[OleDbConnection]"
+                  connectionManagerID="{7757F634-3D4A-48C0-93FF-020A78BD5A40}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[BGAW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Inputs[Lookup Input].Columns[Copy of identificacion]"
+                      cachedDataType="i4"
+                      cachedName="Copy of identificacion"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of identificacion]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">codigoOperacion</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Inputs[Lookup Input].Columns[Copy of nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of nombre"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of nombre]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">operacion</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Inputs[Lookup Input].Columns[Copy of titulo]"
+                      cachedDataType="i4"
+                      cachedName="Copy of titulo"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of titulo]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">codigoTitulo</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Inputs[Lookup Input].Columns[Copy of nombreTitulo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of nombreTitulo"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of nombreTitulo]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">titulo</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos)"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP - Operaciones (Nuevos)"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT operacionFk, codigoOperacion FROM dw.Dim_Operacion</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT operacionFk, codigoOperacion FROM dw.Dim_Operacion) [refTable]
+where [refTable].[codigoOperacion] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="operacionFk" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="codigoOperacion" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of identificacion]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Connections[OleDbConnection]"
+                  connectionManagerID="{7757F634-3D4A-48C0-93FF-020A78BD5A40}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[BGAW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Inputs[Lookup Input].Columns[Copy of identificacion]"
+                      cachedDataType="i4"
+                      cachedName="Copy of identificacion"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of identificacion]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">codigoOperacion</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Outputs[Lookup Match Output].Columns[operacionFk]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Outputs[Lookup Match Output].Columns[operacionFk]"
+                      name="operacionFk"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">operacionFk</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST - Dw Dim_Operacion"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dw].[Dim_Operacion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Connections[OleDbConnection]"
+                  connectionManagerID="{7757F634-3D4A-48C0-93FF-020A78BD5A40}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[BGAW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].Columns[loadDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="loadDate"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].ExternalColumns[loadDate]"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[loadDate]" />
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].Columns[updateDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="updateDate"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].ExternalColumns[updateDate]"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[updateDate]" />
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].Columns[Copy of nombre]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of nombre"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].ExternalColumns[operacion]"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of nombre]" />
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].Columns[Copy of nombreTitulo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of nombreTitulo"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].ExternalColumns[titulo]"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of nombreTitulo]" />
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].Columns[Copy of identificacion]"
+                      cachedDataType="i4"
+                      cachedName="Copy of identificacion"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].ExternalColumns[codigoOperacion]"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of identificacion]" />
+                    <inputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].Columns[Copy of titulo]"
+                      cachedDataType="i4"
+                      cachedName="Copy of titulo"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].ExternalColumns[codigoTitulo]"
+                      lineageId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output].Columns[Copy of titulo]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].ExternalColumns[operacionFk]"
+                      dataType="i4"
+                      name="operacionFk" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].ExternalColumns[codigoOperacion]"
+                      dataType="i4"
+                      name="codigoOperacion" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].ExternalColumns[operacion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="operacion" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].ExternalColumns[codigoTitulo]"
+                      dataType="i4"
+                      name="codigoTitulo" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].ExternalColumns[titulo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="titulo" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].ExternalColumns[loadDate]"
+                      dataType="dbTimeStamp"
+                      name="loadDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input].ExternalColumns[updateDate]"
+                      dataType="dbTimeStamp"
+                      name="updateDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_SRC - Topaz Operaciones"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT op.identificacion, op.nombre, op.titulo, REPLACE(UPPER(op2.nombre),'-','') nombreTitulo, GETDATE() loadDate, CONVERT(DATETIME,'1901-01-01 00:00:00.000') updateDate--select *
+       FROM topaz.Operaciones op 
+  LEFT JOIN (SELECT titulo, nombre FROM operaciones WHERE identificacion = 0) op2 ON op.titulo = op2.titulo 
+      WHERE op.identificacion &lt;&gt; 0
+        AND (op.identificacion NOT IN (6370,6371,6392,6393) OR op.titulo NOT IN (6200)) --Desarrollo debe corregir duplicados
+        AND (op.identificacion NOT IN (7648) OR op.titulo NOT IN (6600)) --Desarrollo debe corregir duplicados
+        AND (op.identificacion NOT IN (5469) OR op.titulo NOT IN (4900)) --Desarrollo debe corregir duplicados
+   ORDER BY op.identificacion</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Connections[OleDbConnection]"
+                  connectionManagerID="{7757F634-3D4A-48C0-93FF-020A78BD5A40}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[BGAW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[identificacion]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].ExternalColumns[identificacion]"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[identificacion]"
+                      name="identificacion"
+                      precision="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
+                      length="50"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[titulo]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].ExternalColumns[titulo]"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[titulo]"
+                      name="titulo"
+                      precision="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[nombreTitulo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].ExternalColumns[nombreTitulo]"
+                      length="4000"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[nombreTitulo]"
+                      name="nombreTitulo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[loadDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].ExternalColumns[loadDate]"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[loadDate]"
+                      name="loadDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[updateDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].ExternalColumns[updateDate]"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].Columns[updateDate]"
+                      name="updateDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].ExternalColumns[identificacion]"
+                      dataType="numeric"
+                      name="identificacion"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="50"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].ExternalColumns[titulo]"
+                      dataType="numeric"
+                      name="titulo"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].ExternalColumns[nombreTitulo]"
+                      dataType="wstr"
+                      length="4000"
+                      name="nombreTitulo" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].ExternalColumns[loadDate]"
+                      dataType="dbTimeStamp"
+                      name="loadDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output].ExternalColumns[updateDate]"
+                      dataType="dbTimeStamp"
+                      name="updateDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[identificacion]"
+                      dataType="numeric"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[identificacion]"
+                      name="identificacion"
+                      precision="5" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[nombre]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[nombre]"
+                      name="nombre" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[titulo]"
+                      dataType="numeric"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[titulo]"
+                      name="titulo"
+                      precision="5" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[nombreTitulo]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[nombreTitulo]"
+                      name="nombreTitulo" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[loadDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[loadDate]"
+                      name="loadDate" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[updateDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[updateDate]"
+                      name="updateDate" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFLW - Dim Operación.Paths[Data Conversion Output]"
+              endId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\DFLW - Dim Operación\DCNV - Conversiones.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFLW - Dim Operación.Paths[Derived Column Output]"
+              endId="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFLW - Dim Operación.Paths[Lookup Match Output]"
+              endId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFLW - Dim Operación.Paths[Lookup No Match Output]"
+              description="Nuevos Registros"
+              endId="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos).Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DFLW - Dim Operación.Paths[Lookup No Match Output1]"
+              endId="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion.Inputs[Derived Column Input]"
+              name="Lookup No Match Output"
+              startId="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios).Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DFLW - Dim Operación.Paths[OLE DB Source Output]"
+              endId="Package\DFLW - Dim Operación\DCNV - Conversiones.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="187,42"
+          Id="Package\DFLW - Dim Operación"
+          TopLeft="366,72" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFLW - Dim Operación">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="247,42"
+          Id="Package\DFLW - Dim Operación\CMD - Actualiza Dw Dim_Operacion"
+          TopLeft="763,324" />
+        <NodeLayout
+          Size="244,42"
+          Id="Package\DFLW - Dim Operación\DER - Adiciona Fecha Actualizacion"
+          TopLeft="761,224" />
+        <NodeLayout
+          Size="224,42"
+          Id="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion"
+          TopLeft="88,331" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\DFLW - Dim Operación\DCNV - Conversiones"
+          TopLeft="107,135" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones"
+          TopLeft="89,43" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios)"
+          TopLeft="418,225" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos)"
+          TopLeft="96,223" />
+        <EdgeLayout
+          Id="Package\DFLW - Dim Operación.Paths[OLE DB Source Output]"
+          TopLeft="198.5,85">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFLW - Dim Operación.Paths[Lookup No Match Output1]"
+          TopLeft="634,245.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="127,0"
+              Start="0,0"
+              End="119.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="119.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="3.94361328125,5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFLW - Dim Operación.Paths[Lookup No Match Output]"
+          TopLeft="200.75,265">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66"
+              Start="0,0"
+              End="0,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,23.4453125,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFLW - Dim Operación.Paths[Lookup Match Output]"
+          TopLeft="307,245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="111,0"
+              Start="0,0"
+              End="103.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="103.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="3.55861328125,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFLW - Dim Operación.Paths[Derived Column Output]"
+          TopLeft="884.75,266">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFLW - Dim Operación.Paths[Data Conversion Output]"
+          TopLeft="199,177">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFLW - Dim Operación\OLE_DST - Dw Dim_Operacion">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFLW - Dim Operación\OLE_SRC - Topaz Operaciones">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFLW - Dim Operación\LKP - Operaciones (Cambios)">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFLW - Dim Operación\LKP - Operaciones (Nuevos)">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

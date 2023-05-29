@@ -1,0 +1,900 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/16/2014 10:27:44 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="31A10571605"
+  DTS:CreatorName="BG\patricia.rivero"
+  DTS:DTSID="{03069007-A3DE-47EB-8F59-64D2C3CC55FD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.438"
+  DTS:LocaleID="16394"
+  DTS:ObjectName="E_TOPAZ_ASIENTOS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="56"
+  DTS:VersionGUID="{80602C87-5003-4490-A56E-BAFFC64FFF24}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFLW- EXTRACCION TABLA ASIENTOS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{DB0D7FFA-CB86-42DD-8156-AD2E181FCC73}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFLW- EXTRACCION TABLA ASIENTOS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Extracts data from a relational database by using a .NET provider.;Microsoft Corporation; Microsoft SqlServer v10; © 2007 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Extracts data from a relational database by using a .NET provider."
+              name="ADO_ SRC - TOPAZ ASIENTOS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        ASIENTO, ORDINAL, OPERACION, ESTADO, INIUSR, DESCRIPCION, HORAINICIO, HORAFIN, PROXST, INIUSRBAJA, SECTOR, SUCURSAL, FECHAPROCESO, PROCESSMANAGERID, EXTORNO
+FROM            GANADERO.ASIENTOS
+WHERE        (FECHAPROCESO &gt;= sysdate - 15)</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Connections[IDbConnection]"
+                  connectionManagerID="{57CD7C15-A7D7-40DF-8929-2E6E6355B2EE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[TOPAZ]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[ASIENTO]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[ASIENTO]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[ASIENTO]"
+                      name="ASIENTO"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[ORDINAL]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[ORDINAL]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[ORDINAL]"
+                      name="ORDINAL"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[OPERACION]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[OPERACION]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[OPERACION]"
+                      name="OPERACION"
+                      precision="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[ESTADO]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[ESTADO]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[ESTADO]"
+                      name="ESTADO"
+                      precision="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[INIUSR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[INIUSR]"
+                      length="8"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[INIUSR]"
+                      name="INIUSR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[DESCRIPCION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[DESCRIPCION]"
+                      length="100"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[DESCRIPCION]"
+                      name="DESCRIPCION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[HORAINICIO]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[HORAINICIO]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[HORAINICIO]"
+                      name="HORAINICIO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[HORAFIN]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[HORAFIN]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[HORAFIN]"
+                      name="HORAFIN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[PROXST]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[PROXST]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[PROXST]"
+                      name="PROXST"
+                      precision="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[INIUSRBAJA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[INIUSRBAJA]"
+                      length="8"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[INIUSRBAJA]"
+                      name="INIUSRBAJA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[SECTOR]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[SECTOR]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[SECTOR]"
+                      name="SECTOR"
+                      precision="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[SUCURSAL]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[SUCURSAL]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[SUCURSAL]"
+                      name="SUCURSAL"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[FECHAPROCESO]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[FECHAPROCESO]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[FECHAPROCESO]"
+                      name="FECHAPROCESO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[PROCESSMANAGERID]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[PROCESSMANAGERID]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[PROCESSMANAGERID]"
+                      name="PROCESSMANAGERID"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[EXTORNO]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[EXTORNO]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[EXTORNO]"
+                      name="EXTORNO"
+                      precision="1"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[ASIENTO]"
+                      dataType="numeric"
+                      name="ASIENTO"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[ORDINAL]"
+                      dataType="numeric"
+                      name="ORDINAL"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[OPERACION]"
+                      dataType="numeric"
+                      name="OPERACION"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[ESTADO]"
+                      dataType="numeric"
+                      name="ESTADO"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[INIUSR]"
+                      dataType="wstr"
+                      length="8"
+                      name="INIUSR" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[DESCRIPCION]"
+                      dataType="wstr"
+                      length="100"
+                      name="DESCRIPCION" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[HORAINICIO]"
+                      dataType="dbTimeStamp"
+                      name="HORAINICIO" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[HORAFIN]"
+                      dataType="dbTimeStamp"
+                      name="HORAFIN" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[PROXST]"
+                      dataType="numeric"
+                      name="PROXST"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[INIUSRBAJA]"
+                      dataType="wstr"
+                      length="8"
+                      name="INIUSRBAJA" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[SECTOR]"
+                      dataType="numeric"
+                      name="SECTOR"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[SUCURSAL]"
+                      dataType="numeric"
+                      name="SUCURSAL"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[FECHAPROCESO]"
+                      dataType="dbTimeStamp"
+                      name="FECHAPROCESO" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[PROCESSMANAGERID]"
+                      dataType="numeric"
+                      name="PROCESSMANAGERID"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].ExternalColumns[EXTORNO]"
+                      dataType="numeric"
+                      name="EXTORNO"
+                      precision="1" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[ASIENTO]"
+                      dataType="numeric"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[ASIENTO]"
+                      name="ASIENTO"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[ORDINAL]"
+                      dataType="numeric"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[ORDINAL]"
+                      name="ORDINAL"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[OPERACION]"
+                      dataType="numeric"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[OPERACION]"
+                      name="OPERACION"
+                      precision="5" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[ESTADO]"
+                      dataType="numeric"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[ESTADO]"
+                      name="ESTADO"
+                      precision="5" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[INIUSR]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[INIUSR]"
+                      name="INIUSR" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[DESCRIPCION]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[DESCRIPCION]"
+                      name="DESCRIPCION" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[HORAINICIO]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[HORAINICIO]"
+                      name="HORAINICIO" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[HORAFIN]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[HORAFIN]"
+                      name="HORAFIN" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[PROXST]"
+                      dataType="numeric"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[PROXST]"
+                      name="PROXST"
+                      precision="5" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[INIUSRBAJA]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[INIUSRBAJA]"
+                      name="INIUSRBAJA" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[SECTOR]"
+                      dataType="numeric"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[SECTOR]"
+                      name="SECTOR"
+                      precision="5" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[SUCURSAL]"
+                      dataType="numeric"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[SUCURSAL]"
+                      name="SUCURSAL"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[FECHAPROCESO]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[FECHAPROCESO]"
+                      name="FECHAPROCESO" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[PROCESSMANAGERID]"
+                      dataType="numeric"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[PROCESSMANAGERID]"
+                      name="PROCESSMANAGERID"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[EXTORNO]"
+                      dataType="numeric"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[EXTORNO]"
+                      name="EXTORNO"
+                      precision="1" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST -DELTA ASIENTOS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[delta].[Asientos]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Connections[OleDbConnection]"
+                  connectionManagerID="{7757F634-3D4A-48C0-93FF-020A78BD5A40}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[BGAW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[ASIENTO]"
+                      cachedDataType="numeric"
+                      cachedName="ASIENTO"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[ASIENTO]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[ASIENTO]" />
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[ORDINAL]"
+                      cachedDataType="numeric"
+                      cachedName="ORDINAL"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[ORDINAL]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[ORDINAL]" />
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[OPERACION]"
+                      cachedDataType="numeric"
+                      cachedName="OPERACION"
+                      cachedPrecision="5"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[OPERACION]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[OPERACION]" />
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[ESTADO]"
+                      cachedDataType="numeric"
+                      cachedName="ESTADO"
+                      cachedPrecision="5"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[ESTADO]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[ESTADO]" />
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[INIUSR]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="INIUSR"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[INIUSR]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[INIUSR]" />
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[DESCRIPCION]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="DESCRIPCION"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[DESCRIPCION]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[DESCRIPCION]" />
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[HORAINICIO]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="HORAINICIO"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[HORAINICIO]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[HORAINICIO]" />
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[HORAFIN]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="HORAFIN"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[HORAFIN]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[HORAFIN]" />
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[PROXST]"
+                      cachedDataType="numeric"
+                      cachedName="PROXST"
+                      cachedPrecision="5"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[PROXST]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[PROXST]" />
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[INIUSRBAJA]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="INIUSRBAJA"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[INIUSRBAJA]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[INIUSRBAJA]" />
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[SECTOR]"
+                      cachedDataType="numeric"
+                      cachedName="SECTOR"
+                      cachedPrecision="5"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[SECTOR]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[SECTOR]" />
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[SUCURSAL]"
+                      cachedDataType="numeric"
+                      cachedName="SUCURSAL"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[SUCURSAL]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[SUCURSAL]" />
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[FECHAPROCESO]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FECHAPROCESO"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[FECHAPROCESO]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[FECHAPROCESO]" />
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[PROCESSMANAGERID]"
+                      cachedDataType="numeric"
+                      cachedName="PROCESSMANAGERID"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[PROCESSMANAGERID]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[PROCESSMANAGERID]" />
+                    <inputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].Columns[EXTORNO]"
+                      cachedDataType="numeric"
+                      cachedName="EXTORNO"
+                      cachedPrecision="1"
+                      externalMetadataColumnId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[EXTORNO]"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output].Columns[EXTORNO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[ASIENTO]"
+                      dataType="numeric"
+                      name="ASIENTO"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[ORDINAL]"
+                      dataType="numeric"
+                      name="ORDINAL"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[OPERACION]"
+                      dataType="numeric"
+                      name="OPERACION"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[ESTADO]"
+                      dataType="numeric"
+                      name="ESTADO"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[INIUSR]"
+                      dataType="wstr"
+                      length="8"
+                      name="INIUSR" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[DESCRIPCION]"
+                      dataType="wstr"
+                      length="100"
+                      name="DESCRIPCION" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[HORAINICIO]"
+                      dataType="dbTimeStamp"
+                      name="HORAINICIO" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[HORAFIN]"
+                      dataType="dbTimeStamp"
+                      name="HORAFIN" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[PROXST]"
+                      dataType="numeric"
+                      name="PROXST"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[INIUSRBAJA]"
+                      dataType="wstr"
+                      length="8"
+                      name="INIUSRBAJA" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[SECTOR]"
+                      dataType="numeric"
+                      name="SECTOR"
+                      precision="5" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[SUCURSAL]"
+                      dataType="numeric"
+                      name="SUCURSAL"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[FECHAPROCESO]"
+                      dataType="dbDate"
+                      name="FECHAPROCESO" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[PROCESSMANAGERID]"
+                      dataType="numeric"
+                      name="PROCESSMANAGERID"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[EXTORNO]"
+                      dataType="numeric"
+                      name="EXTORNO"
+                      precision="1" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[CHECKSUM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="32"
+                      name="CHECKSUM" />
+                    <externalMetadataColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input].ExternalColumns[CANAL]"
+                      dataType="numeric"
+                      name="CANAL"
+                      precision="3" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFLW- EXTRACCION TABLA ASIENTOS.Paths[ADO NET Source Output]"
+              endId="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS.Inputs[OLE DB Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - MERGE ASIENTOS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{4F09863D-FBD8-4484-9AAD-2EE7138C9168}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - MERGE ASIENTOS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7757F634-3D4A-48C0-93FF-020A78BD5A40}"
+          SQLTask:SqlStatementSource="MERGE    &#xA;INTO   &#xA; topcn.Asientos sf USING delta.Asientos tmp ON   &#xA; (  &#xA;  sf.SUCURSAL = tmp.SUCURSAL  &#xA;  and sf.FECHAPROCESO = tmp.FECHAPROCESO  &#xA;  and sf.ASIENTO = tmp.ASIENTO   &#xA; )  &#xA;WHEN MATCHED and coalesce(sf.checksum,'') &lt;&gt; tmp.checksum then UPDATE&#xA;set&#xA; sf.ordinal=tmp.ordinal&#xA;,sf.operacion=tmp.operacion&#xA;,sf.estado=tmp.estado&#xA;,sf.iniusr=tmp.iniusr&#xA;,sf.descripcion=tmp.descripcion&#xA;,sf.horainicio=tmp.horainicio&#xA;,sf.horafin=tmp.horafin&#xA;,sf.proxst=tmp.proxst&#xA;,sf.iniusrbaja=tmp.iniusrbaja&#xA;,sf.sector=tmp.sector&#xA;,sf.processmanagerid=tmp.processmanagerid&#xA;,sf.extorno=tmp.extorno&#xA;,sf.checksum=tmp.checksum&#xA;&#xA;WHEN NOT MATCHED BY TARGET THEN    &#xA; INSERT (  &#xA;     [ASIENTO]&#xA;&#x9;,[ORDINAL]&#xA;&#x9;,[OPERACION]&#xA;&#x9;,[ESTADO]&#xA;&#x9;,[INIUSR]&#xA;&#x9;,[DESCRIPCION]&#xA;&#x9;,[HORAINICIO]&#xA;&#x9;,[HORAFIN]&#xA;&#x9;,[PROXST]&#xA;&#x9;,[INIUSRBAJA]&#xA;&#x9;,[SECTOR]&#xA;&#x9;,[SUCURSAL]&#xA;&#x9;,[FECHAPROCESO]&#xA;&#x9;,[PROCESSMANAGERID]&#xA;&#x9;,[EXTORNO]&#xA;&#x9;,[checksum]&#xA; )  &#xA; values (  &#xA;     tmp.[ASIENTO]&#xA;&#x9;,tmp.[ORDINAL]&#xA;&#x9;,tmp.[OPERACION]&#xA;&#x9;,tmp.[ESTADO]&#xA;&#x9;,tmp.[INIUSR]&#xA;&#x9;,tmp.[DESCRIPCION]&#xA;&#x9;,tmp.[HORAINICIO]&#xA;&#x9;,tmp.[HORAFIN]&#xA;&#x9;,tmp.[PROXST]&#xA;&#x9;,tmp.[INIUSRBAJA]&#xA;&#x9;,tmp.[SECTOR]&#xA;&#x9;,tmp.[SUCURSAL]&#xA;&#x9;,tmp.[FECHAPROCESO]&#xA;&#x9;,tmp.[PROCESSMANAGERID]&#xA;&#x9;,tmp.[EXTORNO]&#xA;&#x9;,tmp.[checksum]&#xA; )  &#xA;;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - TRUNC DELTA ASIENTOS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{0C61421F-5535-4285-938C-C310F633BD05}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - TRUNC DELTA ASIENTOS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7757F634-3D4A-48C0-93FF-020A78BD5A40}"
+          SQLTask:SqlStatementSource="truncate table delta.Asientos" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{1FCB7754-4AE1-418E-85E5-424EEA68C445}"
+      DTS:From="Package\SQL - TRUNC DELTA ASIENTOS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFLW- EXTRACCION TABLA ASIENTOS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{F3075A02-DEB9-4C53-AEB7-C50952EF75B0}"
+      DTS:From="Package\DFLW- EXTRACCION TABLA ASIENTOS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL - MERGE ASIENTOS" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="263,42"
+          Id="Package\DFLW- EXTRACCION TABLA ASIENTOS"
+          TopLeft="8.3679245283019,97.2358490566038" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\SQL - MERGE ASIENTOS"
+          TopLeft="43.4811320754717,188.198113207547" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\SQL - TRUNC DELTA ASIENTOS"
+          TopLeft="31.5,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="142.933962264151,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.7358490566038"
+              Start="0,0"
+              End="0,42.2358490566038">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.2358490566038" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="140.424528301887,139.235849056604">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.9622641509432"
+              Start="0,0"
+              End="0,41.4622641509432">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.4622641509432" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFLW- EXTRACCION TABLA ASIENTOS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="214,42"
+          Id="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS"
+          TopLeft="9.50000000000001,107.5" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\DFLW- EXTRACCION TABLA ASIENTOS\ADO_ SRC - TOPAZ ASIENTOS"
+          TopLeft="5.50000000000001,5.5" />
+        <EdgeLayout
+          Id="Package\DFLW- EXTRACCION TABLA ASIENTOS.Paths[ADO NET Source Output]"
+          TopLeft="116.75,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFLW- EXTRACCION TABLA ASIENTOS\OLE_DST -DELTA ASIENTOS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

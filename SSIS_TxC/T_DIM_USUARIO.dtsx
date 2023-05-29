@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/24/2019 3:06:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="31T61E21"
+  DTS:CreatorName="BG\felipe.sirpa"
+  DTS:DTSID="{279EC574-42C3-4420-BAA0-42E7EC302A8E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.438"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="T_DIM_USUARIO"
+  DTS:PackageType="5"
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{F3121E11-DB46-4209-B058-69D3C0A24F9D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SQL MERGE Dim_Usuario"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{EF6B599E-EEC4-45BF-9D14-748F040FE1AF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL MERGE Dim_Usuario"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7757F634-3D4A-48C0-93FF-020A78BD5A40}"
+          SQLTask:SqlStatementSource="/*&#xA;-------------------------------------------------------------------------------------    &#xA;|&#x9;PROYECTO:&#x9;&#x9;Cubo de Transacciones por Canal&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;|&#xA;|&#x9;DIMENSIÓN:&#x9;&#x9;dw.Dim_Usuario&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;|&#xA;|&#x9;TIPO:&#x9;&#x9;&#x9;Dimensión lentamente cambiante tipo 2 SCD2&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;|&#xA;|&#x9;AUTOR:&#x9;&#x9;&#x9;Felipe Sirpa Paredes&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;|&#xA;|   FECHA:&#x9;&#x9;&#x9;04/10/2019&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;|&#xA;|   NOTA:&#x9;&#x9;&#x9;Filtrar versionActual = 1&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;|&#xA;-------------------------------------------------------------------------------------    &#xA;*/&#xA;WITH delta_Dim_Usuario AS&#xA;(&#x9;&#x9;SELECT&#x9;'___' codigoUsuario,'Sin Usuario' usuario, 'S/C' clave, 'S/G' grupo, -1 deshabilitado, 0 numero_caja, 0 codigoSucursal,&#xA;&#x9;&#x9;&#x9;CONVERT(DATETIME,'1901-01-01 00:00:00.000') fechaUltimoLog, 'sin_mail' usuarioMail, 'sin_usuario_red' usuarioRed, 'sin_area' area, 'sin_cargo' cargo, 0 version&#xA;&#x9;&#x9;UNION ALL&#xA;&#x9;&#x9;SELECT&#x9;CASE WHEN U.clave IN ('EV6','PSJ') THEN U.clave ELSE iniciales END AS codigoUsuario, &#xA;&#x9;&#x9;&#x9;&#x9;U.nombre usuario, U.clave, U.grupo, U.deshabilitado, U.nrodecaja numero_caja, ISNULL(nrosucursal,0) codigoSucursal, fechaultlog fechaUltimoLog, &#xA;&#x9;&#x9;&#x9;&#x9;usmail usuarioMail, U.usuarioRed,&#xA;&#x9;&#x9;&#x9;&#x9;AD1.department area,&#xA;&#x9;&#x9;&#x9;&#x9;CASE WHEN C.NOMBRE_CARGO IS NULL THEN AD1.title  &#xA;&#x9;&#x9;&#x9;&#x9;ELSE  &#xA;&#x9;&#x9;&#x9;&#x9;STUFF((&#x9;SELECT ' '+UPPER(LEFT(T3.V, 1))+LOWER(STUFF(T3.V, 1, 1, '')) FROM &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(SELECT CAST(REPLACE((SELECT C.NOMBRE_CARGO AS '*' FOR XML PATH('')), ' ', '&lt;X/&gt;') AS XML).query('.')) AS T1(X)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;CROSS APPLY T1.X.nodes('text()') AS T2(X)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;CROSS APPLY (SELECT T2.X.value('.', 'varchar(100)')) AS T3(V) FOR XML PATH (''), type).value('text()[1]', 'varchar(100)'), 1, 1, '')&#xA;&#x9;&#x9;&#x9;&#x9;END cargo, ISNULL(DUS.version,0) version &#xA;&#x9;&#x9;  FROM&#x9;topaz.usuarios U --select * from topaz.usuarios&#xA;&#x9; LEFT JOIN  topaz.SIG_FUNCIONARIOS F&#x9;ON U.iniciales = F.clave --select * from topaz.sig_funcionarios &#xA;&#x9; LEFT JOIN  topaz.SIG_CARGOS C ON F.ID_CARGO = C.ID_CARGO&#xA;&#x9; LEFT JOIN  ad.Usuario AD1 ON REPLACE(AD1.userPrincipalName,'@bg.com.bo','') = U.usuariored --select * from ad.Usuario &#xA;&#x9; LEFT JOIN  dw.Dim_Usuario DUS ON U.iniciales = DUS.codigoUsuario AND versionActual = 1&#xA;)&#xA;&#xA;INSERT INTO dw.Dim_Usuario&#xA;SELECT&#x9;codigoUsuario, usuario, clave, grupo, deshabilitado, numero_caja, codigoSucursal, fechaUltimoLog, usuarioMail, &#xA;&#x9;&#x9;usuarioRed , area, cargo, GETDATE() fechaInicio,NULL fechaFin, version+1,1 versionActual, GETDATE() fechaProceso&#x9;&#x9;&#x9;&#xA;  FROM&#x9;(&#xA;&#x9;&#x9;&#x9;MERGE &#xA;&#x9;&#x9;&#x9;&#x9;dw.Dim_Usuario AS TARGET &#xA;&#x9;&#x9;&#x9;USING &#xA;&#x9;&#x9;&#x9;&#x9;delta_Dim_Usuario AS SOURCE &#xA;&#x9;&#x9;&#x9;ON &#xA;&#x9;&#x9;&#x9;&#x9;SOURCE.codigoUsuario = TARGET.codigoUsuario &#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;WHEN NOT MATCHED BY TARGET &#xA;&#x9;&#x9;&#x9;&#x9;THEN INSERT (&#x9;codigoUsuario, usuario, clave, grupo, deshabilitado, numero_caja, codigoSucursal, &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;fechaUltimoLog, usuarioMail , usuarioRed, area, cargo,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;fechaInicio, fechaFin, version, versionActual, fechaProceso)&#xA;&#x9;&#x9;&#x9;&#x9;VALUES (SOURCE.codigoUsuario, SOURCE.usuario, SOURCE.clave, SOURCE.grupo, SOURCE.deshabilitado, SOURCE.numero_caja, SOURCE.codigoSucursal, &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SOURCE.fechaUltimoLog, SOURCE.usuarioMail, SOURCE.usuarioRed, SOURCE.area, SOURCE.cargo,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;GETDATE(),NULL,SOURCE.version+1,1,GETDATE())&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;WHEN MATCHED &#xA;&#x9;&#x9;&#x9;&#x9;&#x9; AND TARGET.versionActual = 1&#xA;&#x9;&#x9;&#x9;&#x9;&#x9; AND (ISNULL(TARGET.grupo,'') &lt;&gt; ISNULL(SOURCE.grupo,'') OR ISNULL(TARGET.area,'') &lt;&gt; ISNULL(SOURCE.area,'') OR ISNULL(TARGET.cargo,'') &lt;&gt; ISNULL(SOURCE.cargo,''))      &#xA;&#x9;&#x9;&#x9;&#x9;THEN&#xA;&#x9;&#x9;&#x9;&#x9;UPDATE       &#xA;&#x9;&#x9;&#x9;&#x9;SET TARGET.versionActual = 0, TARGET.fechaFin = GETDATE()&#xA;&#x9;&#x9;&#x9;&#x9;OUTPUT SOURCE.codigoUsuario, SOURCE.usuario, SOURCE.clave, SOURCE.grupo, SOURCE.deshabilitado, SOURCE.numero_caja, SOURCE.codigoSucursal, &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;SOURCE.fechaUltimoLog, SOURCE.usuarioMail, SOURCE.usuarioRed, SOURCE.area, SOURCE.cargo, SOURCE.version, $Action AS MergeAction&#xA;&#x9;&#x9;&#x9;) AS MRG&#xA;&#x9;&#x9;&#x9;WHERE MRG.MergeAction = 'UPDATE'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="198,42"
+          Id="Package\SQL MERGE Dim_Usuario"
+          TopLeft="73,82" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

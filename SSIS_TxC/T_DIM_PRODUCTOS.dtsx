@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/24/2023 8:40:39 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="31Z62E177"
+  DTS:CreatorName="BG\andres.quinteros"
+  DTS:DTSID="{5C294248-077E-4418-BA68-24D35F5DDB2D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.438"
+  DTS:LocaleID="16394"
+  DTS:ObjectName="T_DIM_PRODUCTOS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{EAF705B9-ECB2-4A44-9DBF-2D97AB984CF6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[bgcub01\im.BGAWTRANS_CANAL]"
+      DTS:CreationName="MSOLAP100"
+      DTS:DTSID="{27BF0C82-F9E4-44BA-B947-B00D88387370}"
+      DTS:ObjectName="bgcub01\im.BGAWTRANS_CANAL">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=bgcub01\im;Initial Catalog=BGAWTRANS_CANAL;Provider=MSOLAP.8;Integrated Security=SSPI;Impersonation Level=Impersonate;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Merge Productos"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{E95BDAEC-49D0-40F9-99FB-6D6DC19D2F3D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Merge Productos"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; Â© 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7757F634-3D4A-48C0-93FF-020A78BD5A40}"
+          SQLTask:SqlStatementSource="&#xA;&#x9; MERGE  dbo.dim_productos as tgt &#xA;&#x9; USING (&#xA;&#x9;&#x9;SELECT [CODIGO_PRODUCTO]&#xA;&#x9;&#x9;&#x9;  ,[NOMBRE_PRODUCTO]&#xA;&#x9;&#x9;&#x9;  ,[C6252]&#xA;&#x9;&#x9;&#x9;  ,[TIPO_PRODUCTO]&#xA;&#x9;&#x9;&#x9;  ,[C6271]&#xA;&#x9;&#x9;&#x9;  ,[RUBRO_OPERATIVO]&#xA;&#x9;&#x9;&#x9;  ,[C6273]&#xA;&#x9;&#x9;&#x9;  ,[NIVEL_CLIENTE]&#xA;&#x9;&#x9;&#x9;  ,[C6283]&#xA;&#x9;&#x9;&#x9;  ,[FAMILIA]&#xA;&#x9;&#x9;&#x9;  ,[C6800]&#xA;&#x9;&#x9;&#x9;  ,[CLASIFICACION]&#xA;&#x9;&#x9;&#x9;  ,[C6825]&#xA;&#x9;&#x9;&#x9;  ,[AGRUPACION_PRODUCTO]&#xA;&#x9;&#x9;&#x9;  ,[TIPO]&#xA;&#x9;&#x9;&#x9;  ,[TIPO_DESC]&#xA;&#x9;&#x9;&#x9;  ,[PERIODOLEGALESTCTA]&#xA;&#x9;&#x9;&#x9;  ,[PERIODO_LEGAL_EST_CTA]&#xA;&#x9;&#x9;&#x9;  ,[C39997]&#xA;&#x9;&#x9;&#x9;  ,[TIPO_CUENTA_VISTA]&#xA;&#x9;&#x9;&#x9;  ,[PROD_COMERCIAL]&#xA;&#x9;&#x9;&#x9;  ,[PRODUCTO_COMERCIAL]&#xA;&#x9;&#x9;&#x9;  ,[TIPO_CREDITO]&#xA;&#x9;&#x9;&#x9;  ,[TIPO_CREDITO_DESCR]&#xA;&#x9;&#x9;&#x9;  ,[TIPODESGRAVAMEN]&#xA;&#x9;&#x9;&#x9;  ,[TIPODESGRAVAMEN_DESCR]&#xA;&#x9;&#x9;&#x9;  ,[ESTADO]&#xA;&#x9;&#x9;&#x9;  ,SUBSTRING(&#x9;LOWER( CONVERT([varchar](32), hashbytes( 'MD5', &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM(CAST([CODIGO_PRODUCTO] as varchar(6))),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM([NOMBRE_PRODUCTO]),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM(CAST([C6252] as varchar(6))),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM([TIPO_PRODUCTO]),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM(CAST([C6271] as varchar(16))),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM([RUBRO_OPERATIVO]),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM(CAST([C6273] as varchar(6))),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM([NIVEL_CLIENTE]),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM([FAMILIA]),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM([C6800]),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM([CLASIFICACION]),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM([C6825]),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM([AGRUPACION_PRODUCTO]),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM([TIPO]),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM([TIPO_DESC]),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM([PERIODOLEGALESTCTA]),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM( [PERIODO_LEGAL_EST_CTA] ),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM(cast( [C39997] as varchar(5)) ),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM( [TIPO_CUENTA_VISTA] ),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM(cast( [PROD_COMERCIAL] as varchar(5)) ),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM( [PRODUCTO_COMERCIAL] ),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM( [TIPO_CREDITO] ),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM( [TIPO_CREDITO_DESCR] ),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM( [TIPODESGRAVAMEN] ),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM( [TIPODESGRAVAMEN_DESCR] ),'')+&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ISNULL(RTRIM( [ESTADO] ),'')&#x9;) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,1)&#xA;&#x9;&#x9;&#x9;&#x9;), 3,32) checksum&#xA;&#x9;&#x9;  FROM [dw].[vw_delta_productos]&#xA;&#x9;&#x9;) as src &#xA;&#x9;ON (&#xA;&#x9;&#x9;src.codigo_producto = tgt.codigo_producto&#xA;&#x9;)&#xA;&#x9;WHEN MATCHED and src.checksum &lt;&gt; tgt.checksum and tgt.version = 1 THEN &#xA;&#x9;&#x9;UPDATE &#xA;&#x9;&#x9;&#x9;SET&#x9;tgt.[CODIGO_PRODUCTO]&#x9;&#x9;= src.[CODIGO_PRODUCTO]&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[NOMBRE_PRODUCTO]&#x9;&#x9;= src.[NOMBRE_PRODUCTO]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[C6252]&#x9;&#x9;&#x9;&#x9;&#x9;= src.[C6252]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[TIPO_PRODUCTO]&#x9;&#x9;&#x9;= src.[TIPO_PRODUCTO]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[C6271]&#x9;&#x9;&#x9;&#x9;&#x9;= src.[C6271]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[RUBRO_OPERATIVO]&#x9;&#x9;= src.[RUBRO_OPERATIVO]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[C6273]&#x9;&#x9;&#x9;&#x9;&#x9;= src.[C6273]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[NIVEL_CLIENTE]&#x9;&#x9;&#x9;= src.[NIVEL_CLIENTE]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[C6283]&#x9;&#x9;&#x9;&#x9;&#x9;= src.[C6283]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[FAMILIA]&#x9;&#x9;&#x9;&#x9;= src.[FAMILIA]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[C6800]&#x9;&#x9;&#x9;&#x9;&#x9;= src.[C6800]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[CLASIFICACION]&#x9;&#x9;&#x9;= src.[CLASIFICACION]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[C6825]&#x9;&#x9;&#x9;&#x9;&#x9;= src.[C6825]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[AGRUPACION_PRODUCTO]&#x9;= src.[AGRUPACION_PRODUCTO]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[TIPO]&#x9;&#x9;&#x9;&#x9;&#x9;= src.[TIPO]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[TIPO_DESC]&#x9;&#x9;&#x9;&#x9;= src.[TIPO_DESC]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[PERIODOLEGALESTCTA]&#x9;= src.[PERIODOLEGALESTCTA]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[PERIODO_LEGAL_EST_CTA]&#x9;= src.[PERIODO_LEGAL_EST_CTA]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[C39997]&#x9;&#x9;&#x9;&#x9;= src.[C39997]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[TIPO_CUENTA_VISTA]&#x9;&#x9;= src.[TIPO_CUENTA_VISTA]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[PROD_COMERCIAL]&#x9;&#x9;= src.[PROD_COMERCIAL]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[PRODUCTO_COMERCIAL]&#x9;= src.[PRODUCTO_COMERCIAL]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[TIPO_CREDITO]&#x9;&#x9;&#x9;= src.[TIPO_CREDITO]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[TIPO_CREDITO_DESCR]&#x9;= src.[TIPO_CREDITO_DESCR]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[TIPODESGRAVAMEN]&#x9;&#x9;= src.[TIPODESGRAVAMEN]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[TIPODESGRAVAMEN_DESCR]&#x9;= src.[TIPODESGRAVAMEN_DESCR]&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[ESTADO]&#x9;&#x9;&#x9;&#x9;= src.[ESTADO]&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;  ,&#x9;tgt.[checksum]&#x9;&#x9;&#x9;&#x9;= src.[checksum]&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;when Not Matched BY TARGET then &#xA;&#x9;&#x9;insert ([CODIGO_PRODUCTO],[NOMBRE_PRODUCTO],[C6252],[TIPO_PRODUCTO],[C6271],[RUBRO_OPERATIVO],[C6273],[NIVEL_CLIENTE],[C6283],[FAMILIA],[C6800],[CLASIFICACION],[C6825],[AGRUPACION_PRODUCTO],[TIPO],[TIPO_DESC],&#xA;&#x9;&#x9;&#x9;&#x9;[PERIODOLEGALESTCTA],[PERIODO_LEGAL_EST_CTA],[C39997],[TIPO_CUENTA_VISTA],[PROD_COMERCIAL],[PRODUCTO_COMERCIAL],[TIPO_CREDITO],[TIPO_CREDITO_DESCR],[TIPODESGRAVAMEN],[TIPODESGRAVAMEN_DESCR],[ESTADO],[FECHA_INI],[FECHA_FIN],[VERSION],[checksum])&#xA;&#x9;&#x9;&#x9;values (src.[CODIGO_PRODUCTO],src.[NOMBRE_PRODUCTO],src.[C6252],src.[TIPO_PRODUCTO],src.[C6271],src.[RUBRO_OPERATIVO],src.[C6273],src.[NIVEL_CLIENTE],src.[C6283],src.[FAMILIA],src.[C6800],src.[CLASIFICACION],src.[C6825],src.[AGRUPACION_PRODUCTO],src.[TIPO],src.[TIPO_DESC],&#xA;&#x9;&#x9;&#x9;&#x9;src.[PERIODOLEGALESTCTA],src.[PERIODO_LEGAL_EST_CTA],src.[C39997],src.[TIPO_CUENTA_VISTA],src.[PROD_COMERCIAL],src.[PRODUCTO_COMERCIAL],src.[TIPO_CREDITO],src.[TIPO_CREDITO_DESCR],src.[TIPODESGRAVAMEN],src.[TIPODESGRAVAMEN_DESCR],src.[ESTADO],(select fecha from dwsyn.fechasPorProcesar),null,1,src.[checksum]  ) ;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta secciÃ³n CDATA contiene la informaciÃ³n de diseÃ±o del paquete. Esta secciÃ³n incluye informaciÃ³n como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta secciÃ³n y comete un error, puede eliminarlo. -->
+<!--El paquete podrÃ¡ cargarse normalmente, pero se perderÃ¡ la informaciÃ³n de diseÃ±o anterior y el diseÃ±ador reorganizarÃ¡ los elementos automÃ¡ticamente en la superficie de diseÃ±o.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecuciÃ³n.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Merge Productos"
+          TopLeft="179,118" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <ConnectionManager
+    design-time-name="Package.ConnectionManagers[bgcub01\im.BGAWTRANS_CANAL]">
+    <ProjectReferenceName></ProjectReferenceName>
+  </ConnectionManager>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

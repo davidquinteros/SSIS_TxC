@@ -1,0 +1,1774 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/7/2013 11:18:27 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="31A10571601X"
+  DTS:CreatorName="BG\jose.claure"
+  DTS:DTSID="{D5AFAE40-5D90-44BB-A0B7-6B4AF362809E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.438"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="E_TOPAZ_MOVIMIENTOS_CONTABLES"
+  DTS:PackageType="5"
+  DTS:VersionBuild="89"
+  DTS:VersionGUID="{65B9EFD2-018F-4D58-A84D-D117B978786D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SQNC - MOVIMIENTOS CONTABLES"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{9119D0ED-5889-49DA-9583-1D456D301F8E}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQNC - MOVIMIENTOS CONTABLES">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{656592D7-0DA4-4169-97F2-170F27FA445A}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFLW - MOVIMIENTOS CONTABLES"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Extracts data from a relational database by using a .NET provider.;Microsoft Corporation; Microsoft SqlServer v10; © 2007 Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="Extracts data from a relational database by using a .NET provider."
+                  name="ADO_SRC - MOVIMIENTOS CONTABLES"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement used by the component to extract data."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        FECHAPROCESO, SUCURSAL, ASIENTO, TRREAL, ORDINAL, TRVIRTUAL, TRTIPO, TIPO, OPERACION, SUCURSAL_CUENTA, CLIENTE, MONEDA, CUENTA, 
+                         OPERACION_CUENTA, PRODUCTO, ORDINAL_CUENTA, NROCAJA, RUBROCONTABLE, CAJADIARIO, DEBITOCREDITO, CONCEPTO, FECHAVALOR, 
+                         CAPITALREALIZADO, EQUIVALENTEMN, INICIALESAUTORIZADOR, INICIALESUSUARIO, HORASISTEMA, MARCAAJUSTE, EQUIVALENTEME, CENTROCOSTO, 
+                         REFERENCIA, ESTADOFECHAVALOR, MARCA_FACTURADO, CODIGO_TRANSACCION, CANAL, FECHA_CONTABLE, SERVICIO, IMPORTE_REMUNERACION, 
+                         NRO_COMP_IVME, NRO_PERSONA
+FROM            ganadero.MOVIMIENTOS_CONTABLES
+WHERE FECHAPROCESO &gt;= sysdate - 10</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">30</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                      name="AllowImplicitStringConversion">true</property>
+                    <property
+                      dataType="System.String"
+                      description="The Destination database table name."
+                      expressionType="Notify"
+                      name="TableOrViewName"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specify the mode to retrieve external column information"
+                      name="AccessMode"
+                      typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Connections[IDbConnection]"
+                      connectionManagerID="{57CD7C15-A7D7-40DF-8929-2E6E6355B2EE}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[TOPAZ]"
+                      description="Managed connection manager"
+                      name="IDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output]"
+                      name="ADO NET Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[FECHAPROCESO]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[FECHAPROCESO]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[FECHAPROCESO]"
+                          name="FECHAPROCESO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[SUCURSAL]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[SUCURSAL]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[SUCURSAL]"
+                          name="SUCURSAL"
+                          precision="10"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[ASIENTO]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[ASIENTO]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[ASIENTO]"
+                          name="ASIENTO"
+                          precision="10"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[TRREAL]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[TRREAL]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[TRREAL]"
+                          name="TRREAL"
+                          precision="5"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[ORDINAL]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[ORDINAL]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[ORDINAL]"
+                          name="ORDINAL"
+                          precision="10"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[TRVIRTUAL]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[TRVIRTUAL]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[TRVIRTUAL]"
+                          name="TRVIRTUAL"
+                          precision="5"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[TRTIPO]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[TRTIPO]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[TRTIPO]"
+                          name="TRTIPO"
+                          precision="5"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[TIPO]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[TIPO]"
+                          length="1"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[TIPO]"
+                          name="TIPO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[OPERACION]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[OPERACION]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[OPERACION]"
+                          name="OPERACION"
+                          precision="5"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[SUCURSAL_CUENTA]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[SUCURSAL_CUENTA]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[SUCURSAL_CUENTA]"
+                          name="SUCURSAL_CUENTA"
+                          precision="10"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CLIENTE]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CLIENTE]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CLIENTE]"
+                          name="CLIENTE"
+                          precision="12"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[MONEDA]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[MONEDA]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[MONEDA]"
+                          name="MONEDA"
+                          precision="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CUENTA]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CUENTA]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CUENTA]"
+                          name="CUENTA"
+                          precision="12"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[OPERACION_CUENTA]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[OPERACION_CUENTA]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[OPERACION_CUENTA]"
+                          name="OPERACION_CUENTA"
+                          precision="14"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[PRODUCTO]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[PRODUCTO]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[PRODUCTO]"
+                          name="PRODUCTO"
+                          precision="5"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[ORDINAL_CUENTA]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[ORDINAL_CUENTA]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[ORDINAL_CUENTA]"
+                          name="ORDINAL_CUENTA"
+                          precision="3"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[NROCAJA]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[NROCAJA]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[NROCAJA]"
+                          name="NROCAJA"
+                          precision="3"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[RUBROCONTABLE]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[RUBROCONTABLE]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[RUBROCONTABLE]"
+                          name="RUBROCONTABLE"
+                          precision="15"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CAJADIARIO]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CAJADIARIO]"
+                          length="1"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CAJADIARIO]"
+                          name="CAJADIARIO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[DEBITOCREDITO]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[DEBITOCREDITO]"
+                          length="1"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[DEBITOCREDITO]"
+                          name="DEBITOCREDITO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CONCEPTO]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CONCEPTO]"
+                          length="100"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CONCEPTO]"
+                          name="CONCEPTO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[FECHAVALOR]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[FECHAVALOR]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[FECHAVALOR]"
+                          name="FECHAVALOR"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CAPITALREALIZADO]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CAPITALREALIZADO]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CAPITALREALIZADO]"
+                          name="CAPITALREALIZADO"
+                          precision="15"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[EQUIVALENTEMN]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[EQUIVALENTEMN]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[EQUIVALENTEMN]"
+                          name="EQUIVALENTEMN"
+                          precision="15"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[INICIALESAUTORIZADOR]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[INICIALESAUTORIZADOR]"
+                          length="8"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[INICIALESAUTORIZADOR]"
+                          name="INICIALESAUTORIZADOR"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[INICIALESUSUARIO]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[INICIALESUSUARIO]"
+                          length="8"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[INICIALESUSUARIO]"
+                          name="INICIALESUSUARIO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[HORASISTEMA]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[HORASISTEMA]"
+                          length="12"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[HORASISTEMA]"
+                          name="HORASISTEMA"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[MARCAAJUSTE]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[MARCAAJUSTE]"
+                          length="1"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[MARCAAJUSTE]"
+                          name="MARCAAJUSTE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[EQUIVALENTEME]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[EQUIVALENTEME]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[EQUIVALENTEME]"
+                          name="EQUIVALENTEME"
+                          precision="15"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CENTROCOSTO]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CENTROCOSTO]"
+                          length="5"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CENTROCOSTO]"
+                          name="CENTROCOSTO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[REFERENCIA]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[REFERENCIA]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[REFERENCIA]"
+                          name="REFERENCIA"
+                          precision="12"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[ESTADOFECHAVALOR]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[ESTADOFECHAVALOR]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[ESTADOFECHAVALOR]"
+                          name="ESTADOFECHAVALOR"
+                          precision="1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[MARCA_FACTURADO]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[MARCA_FACTURADO]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[MARCA_FACTURADO]"
+                          name="MARCA_FACTURADO"
+                          precision="1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CODIGO_TRANSACCION]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CODIGO_TRANSACCION]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CODIGO_TRANSACCION]"
+                          name="CODIGO_TRANSACCION"
+                          precision="5"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CANAL]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CANAL]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CANAL]"
+                          name="CANAL"
+                          precision="3"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[FECHA_CONTABLE]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[FECHA_CONTABLE]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[FECHA_CONTABLE]"
+                          name="FECHA_CONTABLE"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[SERVICIO]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[SERVICIO]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[SERVICIO]"
+                          name="SERVICIO"
+                          precision="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[IMPORTE_REMUNERACION]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[IMPORTE_REMUNERACION]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[IMPORTE_REMUNERACION]"
+                          name="IMPORTE_REMUNERACION"
+                          precision="15"
+                          scale="2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[NRO_COMP_IVME]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[NRO_COMP_IVME]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[NRO_COMP_IVME]"
+                          name="NRO_COMP_IVME"
+                          precision="9"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[NRO_PERSONA]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[NRO_PERSONA]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[NRO_PERSONA]"
+                          name="NRO_PERSONA"
+                          precision="12"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[FECHAPROCESO]"
+                          dataType="dbTimeStamp"
+                          name="FECHAPROCESO" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[SUCURSAL]"
+                          dataType="numeric"
+                          name="SUCURSAL"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[ASIENTO]"
+                          dataType="numeric"
+                          name="ASIENTO"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[TRREAL]"
+                          dataType="numeric"
+                          name="TRREAL"
+                          precision="5" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[ORDINAL]"
+                          dataType="numeric"
+                          name="ORDINAL"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[TRVIRTUAL]"
+                          dataType="numeric"
+                          name="TRVIRTUAL"
+                          precision="5" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[TRTIPO]"
+                          dataType="numeric"
+                          name="TRTIPO"
+                          precision="5" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[TIPO]"
+                          dataType="wstr"
+                          length="1"
+                          name="TIPO" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[OPERACION]"
+                          dataType="numeric"
+                          name="OPERACION"
+                          precision="5" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[SUCURSAL_CUENTA]"
+                          dataType="numeric"
+                          name="SUCURSAL_CUENTA"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CLIENTE]"
+                          dataType="numeric"
+                          name="CLIENTE"
+                          precision="12" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[MONEDA]"
+                          dataType="numeric"
+                          name="MONEDA"
+                          precision="4" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CUENTA]"
+                          dataType="numeric"
+                          name="CUENTA"
+                          precision="12" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[OPERACION_CUENTA]"
+                          dataType="numeric"
+                          name="OPERACION_CUENTA"
+                          precision="14" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[PRODUCTO]"
+                          dataType="numeric"
+                          name="PRODUCTO"
+                          precision="5" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[ORDINAL_CUENTA]"
+                          dataType="numeric"
+                          name="ORDINAL_CUENTA"
+                          precision="3" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[NROCAJA]"
+                          dataType="numeric"
+                          name="NROCAJA"
+                          precision="3" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[RUBROCONTABLE]"
+                          dataType="numeric"
+                          name="RUBROCONTABLE"
+                          precision="15" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CAJADIARIO]"
+                          dataType="wstr"
+                          length="1"
+                          name="CAJADIARIO" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[DEBITOCREDITO]"
+                          dataType="wstr"
+                          length="1"
+                          name="DEBITOCREDITO" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CONCEPTO]"
+                          dataType="wstr"
+                          length="100"
+                          name="CONCEPTO" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[FECHAVALOR]"
+                          dataType="dbTimeStamp"
+                          name="FECHAVALOR" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CAPITALREALIZADO]"
+                          dataType="numeric"
+                          name="CAPITALREALIZADO"
+                          precision="15"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[EQUIVALENTEMN]"
+                          dataType="numeric"
+                          name="EQUIVALENTEMN"
+                          precision="15"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[INICIALESAUTORIZADOR]"
+                          dataType="wstr"
+                          length="8"
+                          name="INICIALESAUTORIZADOR" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[INICIALESUSUARIO]"
+                          dataType="wstr"
+                          length="8"
+                          name="INICIALESUSUARIO" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[HORASISTEMA]"
+                          dataType="wstr"
+                          length="12"
+                          name="HORASISTEMA" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[MARCAAJUSTE]"
+                          dataType="wstr"
+                          length="1"
+                          name="MARCAAJUSTE" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[EQUIVALENTEME]"
+                          dataType="numeric"
+                          name="EQUIVALENTEME"
+                          precision="15"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CENTROCOSTO]"
+                          dataType="wstr"
+                          length="5"
+                          name="CENTROCOSTO" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[REFERENCIA]"
+                          dataType="numeric"
+                          name="REFERENCIA"
+                          precision="12" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[ESTADOFECHAVALOR]"
+                          dataType="numeric"
+                          name="ESTADOFECHAVALOR"
+                          precision="1" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[MARCA_FACTURADO]"
+                          dataType="numeric"
+                          name="MARCA_FACTURADO"
+                          precision="1" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CODIGO_TRANSACCION]"
+                          dataType="numeric"
+                          name="CODIGO_TRANSACCION"
+                          precision="5" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[CANAL]"
+                          dataType="numeric"
+                          name="CANAL"
+                          precision="3" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[FECHA_CONTABLE]"
+                          dataType="dbTimeStamp"
+                          name="FECHA_CONTABLE" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[SERVICIO]"
+                          dataType="numeric"
+                          name="SERVICIO"
+                          precision="2" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[IMPORTE_REMUNERACION]"
+                          dataType="numeric"
+                          name="IMPORTE_REMUNERACION"
+                          precision="15"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[NRO_COMP_IVME]"
+                          dataType="numeric"
+                          name="NRO_COMP_IVME"
+                          precision="9" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].ExternalColumns[NRO_PERSONA]"
+                          dataType="numeric"
+                          name="NRO_PERSONA"
+                          precision="12" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output]"
+                      isErrorOut="true"
+                      name="ADO NET Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[FECHAPROCESO]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[FECHAPROCESO]"
+                          name="FECHAPROCESO" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[SUCURSAL]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[SUCURSAL]"
+                          name="SUCURSAL"
+                          precision="10" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[ASIENTO]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[ASIENTO]"
+                          name="ASIENTO"
+                          precision="10" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[TRREAL]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[TRREAL]"
+                          name="TRREAL"
+                          precision="5" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[ORDINAL]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[ORDINAL]"
+                          name="ORDINAL"
+                          precision="10" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[TRVIRTUAL]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[TRVIRTUAL]"
+                          name="TRVIRTUAL"
+                          precision="5" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[TRTIPO]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[TRTIPO]"
+                          name="TRTIPO"
+                          precision="5" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[TIPO]"
+                          dataType="wstr"
+                          length="1"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[TIPO]"
+                          name="TIPO" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[OPERACION]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[OPERACION]"
+                          name="OPERACION"
+                          precision="5" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[SUCURSAL_CUENTA]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[SUCURSAL_CUENTA]"
+                          name="SUCURSAL_CUENTA"
+                          precision="10" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CLIENTE]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CLIENTE]"
+                          name="CLIENTE"
+                          precision="12" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[MONEDA]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[MONEDA]"
+                          name="MONEDA"
+                          precision="4" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CUENTA]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CUENTA]"
+                          name="CUENTA"
+                          precision="12" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[OPERACION_CUENTA]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[OPERACION_CUENTA]"
+                          name="OPERACION_CUENTA"
+                          precision="14" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[PRODUCTO]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[PRODUCTO]"
+                          name="PRODUCTO"
+                          precision="5" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[ORDINAL_CUENTA]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[ORDINAL_CUENTA]"
+                          name="ORDINAL_CUENTA"
+                          precision="3" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[NROCAJA]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[NROCAJA]"
+                          name="NROCAJA"
+                          precision="3" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[RUBROCONTABLE]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[RUBROCONTABLE]"
+                          name="RUBROCONTABLE"
+                          precision="15" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CAJADIARIO]"
+                          dataType="wstr"
+                          length="1"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CAJADIARIO]"
+                          name="CAJADIARIO" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[DEBITOCREDITO]"
+                          dataType="wstr"
+                          length="1"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[DEBITOCREDITO]"
+                          name="DEBITOCREDITO" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CONCEPTO]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CONCEPTO]"
+                          name="CONCEPTO" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[FECHAVALOR]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[FECHAVALOR]"
+                          name="FECHAVALOR" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CAPITALREALIZADO]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CAPITALREALIZADO]"
+                          name="CAPITALREALIZADO"
+                          precision="15"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[EQUIVALENTEMN]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[EQUIVALENTEMN]"
+                          name="EQUIVALENTEMN"
+                          precision="15"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[INICIALESAUTORIZADOR]"
+                          dataType="wstr"
+                          length="8"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[INICIALESAUTORIZADOR]"
+                          name="INICIALESAUTORIZADOR" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[INICIALESUSUARIO]"
+                          dataType="wstr"
+                          length="8"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[INICIALESUSUARIO]"
+                          name="INICIALESUSUARIO" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[HORASISTEMA]"
+                          dataType="wstr"
+                          length="12"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[HORASISTEMA]"
+                          name="HORASISTEMA" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[MARCAAJUSTE]"
+                          dataType="wstr"
+                          length="1"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[MARCAAJUSTE]"
+                          name="MARCAAJUSTE" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[EQUIVALENTEME]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[EQUIVALENTEME]"
+                          name="EQUIVALENTEME"
+                          precision="15"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CENTROCOSTO]"
+                          dataType="wstr"
+                          length="5"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CENTROCOSTO]"
+                          name="CENTROCOSTO" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[REFERENCIA]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[REFERENCIA]"
+                          name="REFERENCIA"
+                          precision="12" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[ESTADOFECHAVALOR]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[ESTADOFECHAVALOR]"
+                          name="ESTADOFECHAVALOR"
+                          precision="1" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[MARCA_FACTURADO]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[MARCA_FACTURADO]"
+                          name="MARCA_FACTURADO"
+                          precision="1" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CODIGO_TRANSACCION]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CODIGO_TRANSACCION]"
+                          name="CODIGO_TRANSACCION"
+                          precision="5" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CANAL]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[CANAL]"
+                          name="CANAL"
+                          precision="3" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[FECHA_CONTABLE]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[FECHA_CONTABLE]"
+                          name="FECHA_CONTABLE" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[SERVICIO]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[SERVICIO]"
+                          name="SERVICIO"
+                          precision="2" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[IMPORTE_REMUNERACION]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[IMPORTE_REMUNERACION]"
+                          name="IMPORTE_REMUNERACION"
+                          precision="15"
+                          scale="2" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[NRO_COMP_IVME]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[NRO_COMP_IVME]"
+                          name="NRO_COMP_IVME"
+                          precision="9" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[NRO_PERSONA]"
+                          dataType="numeric"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[NRO_PERSONA]"
+                          name="NRO_PERSONA"
+                          precision="12" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE_DST - DELTA MOVIMIENTOS_CONTABLES"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[delta].[Movimientos_Contables]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        FECHAPROCESO, SUCURSAL, ASIENTO, TRREAL, ORDINAL, TRVIRTUAL, TRTIPO, TIPO, OPERACION, SUCURSAL_CUENTA, CLIENTE, MONEDA, CUENTA, 
+                         OPERACION_CUENTA, PRODUCTO, ORDINAL_CUENTA, NROCAJA, RUBROCONTABLE, CAJADIARIO, DEBITOCREDITO, CONCEPTO, FECHAVALOR, 
+                         CAPITALREALIZADO, EQUIVALENTEMN, INICIALESAUTORIZADOR, INICIALESUSUARIO, HORASISTEMA, MARCAAJUSTE, EQUIVALENTEME, CENTROCOSTO, 
+                         REFERENCIA, ESTADOFECHAVALOR, MARCA_FACTURADO, CODIGO_TRANSACCION, CANAL, FECHA_CONTABLE, SERVICIO, IMPORTE_REMUNERACION, 
+                         NRO_COMP_IVME, NRO_PERSONA
+FROM            topCN.MOVIMIENTOS_CONTABLES</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS,ROWS_PER_BATCH = 200000</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">200000</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Connections[OleDbConnection]"
+                      connectionManagerID="{7757F634-3D4A-48C0-93FF-020A78BD5A40}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[BGAW]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[FECHAPROCESO]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="FECHAPROCESO"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[fechaproceso]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[FECHAPROCESO]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[SUCURSAL]"
+                          cachedDataType="numeric"
+                          cachedName="SUCURSAL"
+                          cachedPrecision="10"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[sucursal]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[SUCURSAL]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[ASIENTO]"
+                          cachedDataType="numeric"
+                          cachedName="ASIENTO"
+                          cachedPrecision="10"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[asiento]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[ASIENTO]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[TRREAL]"
+                          cachedDataType="numeric"
+                          cachedName="TRREAL"
+                          cachedPrecision="5"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[trreal]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[TRREAL]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[ORDINAL]"
+                          cachedDataType="numeric"
+                          cachedName="ORDINAL"
+                          cachedPrecision="10"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[ordinal]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[ORDINAL]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[TRVIRTUAL]"
+                          cachedDataType="numeric"
+                          cachedName="TRVIRTUAL"
+                          cachedPrecision="5"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[trvirtual]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[TRVIRTUAL]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[TRTIPO]"
+                          cachedDataType="numeric"
+                          cachedName="TRTIPO"
+                          cachedPrecision="5"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[trtipo]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[TRTIPO]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[TIPO]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="TIPO"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[tipo]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[TIPO]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[OPERACION]"
+                          cachedDataType="numeric"
+                          cachedName="OPERACION"
+                          cachedPrecision="5"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[operacion]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[OPERACION]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[SUCURSAL_CUENTA]"
+                          cachedDataType="numeric"
+                          cachedName="SUCURSAL_CUENTA"
+                          cachedPrecision="10"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[sucursal_cuenta]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[SUCURSAL_CUENTA]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[CLIENTE]"
+                          cachedDataType="numeric"
+                          cachedName="CLIENTE"
+                          cachedPrecision="12"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[cliente]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CLIENTE]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[MONEDA]"
+                          cachedDataType="numeric"
+                          cachedName="MONEDA"
+                          cachedPrecision="4"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[moneda]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[MONEDA]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[CUENTA]"
+                          cachedDataType="numeric"
+                          cachedName="CUENTA"
+                          cachedPrecision="12"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[cuenta]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CUENTA]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[OPERACION_CUENTA]"
+                          cachedDataType="numeric"
+                          cachedName="OPERACION_CUENTA"
+                          cachedPrecision="14"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[operacion_cuenta]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[OPERACION_CUENTA]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[PRODUCTO]"
+                          cachedDataType="numeric"
+                          cachedName="PRODUCTO"
+                          cachedPrecision="5"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[producto]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[PRODUCTO]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[ORDINAL_CUENTA]"
+                          cachedDataType="numeric"
+                          cachedName="ORDINAL_CUENTA"
+                          cachedPrecision="3"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[ordinal_cuenta]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[ORDINAL_CUENTA]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[NROCAJA]"
+                          cachedDataType="numeric"
+                          cachedName="NROCAJA"
+                          cachedPrecision="3"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[nrocaja]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[NROCAJA]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[RUBROCONTABLE]"
+                          cachedDataType="numeric"
+                          cachedName="RUBROCONTABLE"
+                          cachedPrecision="15"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[rubrocontable]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[RUBROCONTABLE]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[CAJADIARIO]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="CAJADIARIO"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[cajadiario]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CAJADIARIO]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[DEBITOCREDITO]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="DEBITOCREDITO"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[debitocredito]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[DEBITOCREDITO]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[CONCEPTO]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="CONCEPTO"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[concepto]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CONCEPTO]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[FECHAVALOR]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="FECHAVALOR"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[fechavalor]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[FECHAVALOR]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[CAPITALREALIZADO]"
+                          cachedDataType="numeric"
+                          cachedName="CAPITALREALIZADO"
+                          cachedPrecision="15"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[capitalrealizado]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CAPITALREALIZADO]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[EQUIVALENTEMN]"
+                          cachedDataType="numeric"
+                          cachedName="EQUIVALENTEMN"
+                          cachedPrecision="15"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[equivalentemn]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[EQUIVALENTEMN]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[INICIALESAUTORIZADOR]"
+                          cachedDataType="wstr"
+                          cachedLength="8"
+                          cachedName="INICIALESAUTORIZADOR"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[inicialesautorizador]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[INICIALESAUTORIZADOR]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[INICIALESUSUARIO]"
+                          cachedDataType="wstr"
+                          cachedLength="8"
+                          cachedName="INICIALESUSUARIO"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[inicialesusuario]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[INICIALESUSUARIO]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[HORASISTEMA]"
+                          cachedDataType="wstr"
+                          cachedLength="12"
+                          cachedName="HORASISTEMA"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[horasistema]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[HORASISTEMA]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[MARCAAJUSTE]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="MARCAAJUSTE"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[marcaajuste]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[MARCAAJUSTE]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[EQUIVALENTEME]"
+                          cachedDataType="numeric"
+                          cachedName="EQUIVALENTEME"
+                          cachedPrecision="15"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[equivalenteme]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[EQUIVALENTEME]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[CENTROCOSTO]"
+                          cachedDataType="wstr"
+                          cachedLength="5"
+                          cachedName="CENTROCOSTO"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[centrocosto]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CENTROCOSTO]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[REFERENCIA]"
+                          cachedDataType="numeric"
+                          cachedName="REFERENCIA"
+                          cachedPrecision="12"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[referencia]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[REFERENCIA]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[ESTADOFECHAVALOR]"
+                          cachedDataType="numeric"
+                          cachedName="ESTADOFECHAVALOR"
+                          cachedPrecision="1"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[estadofechavalor]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[ESTADOFECHAVALOR]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[MARCA_FACTURADO]"
+                          cachedDataType="numeric"
+                          cachedName="MARCA_FACTURADO"
+                          cachedPrecision="1"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[marca_facturado]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[MARCA_FACTURADO]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[CODIGO_TRANSACCION]"
+                          cachedDataType="numeric"
+                          cachedName="CODIGO_TRANSACCION"
+                          cachedPrecision="5"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[codigo_transaccion]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CODIGO_TRANSACCION]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[CANAL]"
+                          cachedDataType="numeric"
+                          cachedName="CANAL"
+                          cachedPrecision="3"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[canal]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[CANAL]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[FECHA_CONTABLE]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="FECHA_CONTABLE"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[fecha_contable]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[FECHA_CONTABLE]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[SERVICIO]"
+                          cachedDataType="numeric"
+                          cachedName="SERVICIO"
+                          cachedPrecision="2"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[servicio]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[SERVICIO]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[IMPORTE_REMUNERACION]"
+                          cachedDataType="numeric"
+                          cachedName="IMPORTE_REMUNERACION"
+                          cachedPrecision="15"
+                          cachedScale="2"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[importe_remuneracion]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[IMPORTE_REMUNERACION]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[NRO_COMP_IVME]"
+                          cachedDataType="numeric"
+                          cachedName="NRO_COMP_IVME"
+                          cachedPrecision="9"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[nro_comp_ivme]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[NRO_COMP_IVME]" />
+                        <inputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].Columns[NRO_PERSONA]"
+                          cachedDataType="numeric"
+                          cachedName="NRO_PERSONA"
+                          cachedPrecision="12"
+                          externalMetadataColumnId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[nro_persona]"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output].Columns[NRO_PERSONA]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[fechaproceso]"
+                          dataType="dbDate"
+                          name="fechaproceso" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[sucursal]"
+                          dataType="numeric"
+                          name="sucursal"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[asiento]"
+                          dataType="numeric"
+                          name="asiento"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[trreal]"
+                          dataType="numeric"
+                          name="trreal"
+                          precision="5" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[ordinal]"
+                          dataType="numeric"
+                          name="ordinal"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[trvirtual]"
+                          dataType="numeric"
+                          name="trvirtual"
+                          precision="5" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[trtipo]"
+                          dataType="numeric"
+                          name="trtipo"
+                          precision="5" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[tipo]"
+                          dataType="wstr"
+                          length="1"
+                          name="tipo" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[operacion]"
+                          dataType="numeric"
+                          name="operacion"
+                          precision="5" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[sucursal_cuenta]"
+                          dataType="numeric"
+                          name="sucursal_cuenta"
+                          precision="10" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[cliente]"
+                          dataType="numeric"
+                          name="cliente"
+                          precision="12" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[moneda]"
+                          dataType="numeric"
+                          name="moneda"
+                          precision="4" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[cuenta]"
+                          dataType="numeric"
+                          name="cuenta"
+                          precision="12" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[operacion_cuenta]"
+                          dataType="numeric"
+                          name="operacion_cuenta"
+                          precision="14" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[producto]"
+                          dataType="numeric"
+                          name="producto"
+                          precision="5" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[ordinal_cuenta]"
+                          dataType="numeric"
+                          name="ordinal_cuenta"
+                          precision="3" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[nrocaja]"
+                          dataType="numeric"
+                          name="nrocaja"
+                          precision="3" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[rubrocontable]"
+                          dataType="numeric"
+                          name="rubrocontable"
+                          precision="15" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[cajadiario]"
+                          dataType="wstr"
+                          length="1"
+                          name="cajadiario" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[debitocredito]"
+                          dataType="wstr"
+                          length="1"
+                          name="debitocredito" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[concepto]"
+                          dataType="wstr"
+                          length="100"
+                          name="concepto" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[fechavalor]"
+                          dataType="dbDate"
+                          name="fechavalor" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[capitalrealizado]"
+                          dataType="numeric"
+                          name="capitalrealizado"
+                          precision="15"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[equivalentemn]"
+                          dataType="numeric"
+                          name="equivalentemn"
+                          precision="15"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[inicialesautorizador]"
+                          dataType="wstr"
+                          length="8"
+                          name="inicialesautorizador" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[inicialesusuario]"
+                          dataType="wstr"
+                          length="8"
+                          name="inicialesusuario" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[horasistema]"
+                          dataType="wstr"
+                          length="12"
+                          name="horasistema" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[marcaajuste]"
+                          dataType="wstr"
+                          length="1"
+                          name="marcaajuste" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[equivalenteme]"
+                          dataType="numeric"
+                          name="equivalenteme"
+                          precision="15"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[centrocosto]"
+                          dataType="wstr"
+                          length="5"
+                          name="centrocosto" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[referencia]"
+                          dataType="numeric"
+                          name="referencia"
+                          precision="12" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[estadofechavalor]"
+                          dataType="numeric"
+                          name="estadofechavalor"
+                          precision="1" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[marca_facturado]"
+                          dataType="numeric"
+                          name="marca_facturado"
+                          precision="1" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[codigo_transaccion]"
+                          dataType="numeric"
+                          name="codigo_transaccion"
+                          precision="5" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[canal]"
+                          dataType="numeric"
+                          name="canal"
+                          precision="3" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[fecha_contable]"
+                          dataType="dbDate"
+                          name="fecha_contable" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[servicio]"
+                          dataType="numeric"
+                          name="servicio"
+                          precision="2" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[importe_remuneracion]"
+                          dataType="numeric"
+                          name="importe_remuneracion"
+                          precision="15"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[nro_comp_ivme]"
+                          dataType="numeric"
+                          name="nro_comp_ivme"
+                          precision="9" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[nro_persona]"
+                          dataType="numeric"
+                          name="nro_persona"
+                          precision="12" />
+                        <externalMetadataColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input].ExternalColumns[checksum]"
+                          codePage="1252"
+                          dataType="str"
+                          length="32"
+                          name="checksum" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES.Paths[ADO NET Source Output]"
+                  endId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES.Inputs[OLE DB Destination Input]"
+                  name="ADO NET Source Output"
+                  startId="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES.Outputs[ADO NET Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - MOVIMIENTOS CONTABLES\SQL - LIMPIAR MOVIMIENTOS CONTABLES"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EB8A51B6-6162-40FB-B599-B6CB5B885669}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - LIMPIAR MOVIMIENTOS CONTABLES"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7757F634-3D4A-48C0-93FF-020A78BD5A40}"
+              SQLTask:SqlStatementSource="truncate table delta.movimientos_contables" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SQNC - MOVIMIENTOS CONTABLES\SQL - PASAR MOVIMIENTOS CONTABLES"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C5FEF6A8-F87D-429A-B060-CF4B36FC278F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - PASAR MOVIMIENTOS CONTABLES"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{7757F634-3D4A-48C0-93FF-020A78BD5A40}"
+              SQLTask:SqlStatementSource="MERGE &#x9;&#x9;&#x9;&#xA;INTO&#x9;&#x9;&#x9;&#xA;&#x9;topcn.Movimientos_Contables sf USING delta.movimientos_contables tmp ON &#x9;&#x9;&#xA;&#x9;(&#x9;&#x9;&#xA;&#x9; sf.SUCURSAL = tmp.SUCURSAL&#x9;&#x9;&#xA;&#x9; and sf.FECHAPROCESO = tmp.FECHAPROCESO&#x9;&#x9;&#xA;&#x9; and sf.ASIENTO = tmp.ASIENTO&#x9;&#x9;&#xA;&#x9; and sf.TRREAL = tmp.TRREAL&#x9;&#x9;&#xA;&#x9; and sf.ORDINAL = tmp.ORDINAL&#x9;&#x9;&#xA;&#x9; and sf.trtipo = tmp.trtipo&#x9;&#x9;&#xA;&#x9; and sf.trvirtual = tmp.trvirtual&#x9;&#x9;&#xA;&#x9;)&#xA;&#x9;WHEN  MATCHED AND (&#xA; (coalesce( sf.checksum,'')&lt;&gt;tmp.checksum)&#xA;) THEN UPDATE&#xA;SET&#xA;sf.tipo=tmp.tipo&#xA;,sf.operacion=tmp.operacion&#xA;,sf.sucursal_cuenta=tmp.sucursal_cuenta&#xA;,sf.cliente=tmp.cliente&#xA;,sf.moneda=tmp.moneda&#xA;,sf.cuenta=tmp.cuenta&#xA;,sf.operacion_cuenta=tmp.operacion_cuenta&#xA;,sf.producto=tmp.producto&#xA;,sf.ordinal_cuenta=tmp.ordinal_cuenta&#xA;,sf.nrocaja=tmp.nrocaja&#xA;,sf.rubrocontable=tmp.rubrocontable&#xA;,sf.cajadiario=tmp.cajadiario&#xA;,sf.debitocredito=tmp.debitocredito&#xA;,sf.concepto=tmp.concepto&#xA;,sf.fechavalor=tmp.fechavalor&#xA;,sf.capitalrealizado=tmp.capitalrealizado&#xA;,sf.equivalentemn=tmp.equivalentemn&#xA;,sf.inicialesautorizador=tmp.inicialesautorizador&#xA;,sf.inicialesusuario=tmp.inicialesusuario&#xA;,sf.horasistema=tmp.horasistema&#xA;,sf.marcaajuste=tmp.marcaajuste&#xA;,sf.equivalenteme=tmp.equivalenteme&#xA;,sf.centrocosto=tmp.centrocosto&#xA;,sf.referencia=tmp.referencia&#xA;,sf.estadofechavalor=tmp.estadofechavalor&#xA;,sf.marca_facturado=tmp.marca_facturado&#xA;,sf.codigo_transaccion=tmp.codigo_transaccion&#xA;,sf.canal=tmp.canal&#xA;,sf.fecha_contable=tmp.fecha_contable&#xA;,sf.servicio=tmp.servicio&#xA;,sf.importe_remuneracion=tmp.importe_remuneracion&#xA;,sf.nro_comp_ivme=tmp.nro_comp_ivme&#xA;,sf.nro_persona=tmp.nro_persona&#xA;,sf.checksum = tmp.checksum&#xA;WHEN NOT MATCHED BY TARGET THEN &#x9;&#x9;&#x9;&#xA;&#x9;INSERT (&#x9;&#x9;&#xA;&#x9;fechaproceso,&#xA;    sucursal,&#xA;    asiento,&#xA;    trreal,&#xA;    ordinal,&#xA;    trvirtual,&#xA;    trtipo,&#xA;    tipo,&#xA;    operacion,&#xA;    sucursal_cuenta,&#xA;    cliente,&#xA;    moneda,&#xA;    cuenta,&#xA;    operacion_cuenta,&#xA;    producto,&#xA;    ordinal_cuenta,&#xA;    nrocaja,&#xA;    rubrocontable,&#xA;    cajadiario,&#xA;    debitocredito,&#xA;    concepto,&#xA;    fechavalor,&#xA;    capitalrealizado,&#xA;    equivalentemn,&#xA;    inicialesautorizador,&#xA;    inicialesusuario,&#xA;    horasistema,&#xA;    marcaajuste,&#xA;    equivalenteme,&#xA;    centrocosto,&#xA;    referencia,&#xA;    estadofechavalor,&#xA;    marca_facturado,&#xA;    codigo_transaccion,&#xA;    canal,&#xA;    fecha_contable,&#xA;    servicio,&#xA;    importe_remuneracion,&#xA;    nro_comp_ivme,&#xA;    nro_persona,&#xA;    checksum &#xA;&#x9;)&#x9;&#x9;&#xA;&#x9;values (&#x9;&#x9;&#xA;&#x9;tmp.fechaproceso,&#xA;    tmp.sucursal,&#xA;    tmp.asiento,&#xA;    tmp.trreal,&#xA;    tmp.ordinal,&#xA;    tmp.trvirtual,&#xA;    tmp.trtipo,&#xA;    tmp.tipo,&#xA;    tmp.operacion,&#xA;    tmp.sucursal_cuenta,&#xA;    tmp.cliente,&#xA;    tmp.moneda,&#xA;    tmp.cuenta,&#xA;    tmp.operacion_cuenta,&#xA;    tmp.producto,&#xA;    tmp.ordinal_cuenta,&#xA;    tmp.nrocaja,&#xA;    tmp.rubrocontable,&#xA;    tmp.cajadiario,&#xA;    tmp.debitocredito,&#xA;    tmp.concepto,&#xA;    tmp.fechavalor,&#xA;    tmp.capitalrealizado,&#xA;    tmp.equivalentemn,&#xA;    tmp.inicialesautorizador,&#xA;    tmp.inicialesusuario,&#xA;    tmp.horasistema,&#xA;    tmp.marcaajuste,&#xA;    tmp.equivalenteme,&#xA;    tmp.centrocosto,&#xA;    tmp.referencia,&#xA;    tmp.estadofechavalor,&#xA;    tmp.marca_facturado,&#xA;    tmp.codigo_transaccion,&#xA;    tmp.canal,&#xA;    tmp.fecha_contable,&#xA;    tmp.servicio,&#xA;    tmp.importe_remuneracion,&#xA;    tmp.nro_comp_ivme,&#xA;    tmp.nro_persona ,&#xA;    tmp.checksum&#xA;&#x9;)&#x9;&#x9;&#xA;;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SQNC - MOVIMIENTOS CONTABLES.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{60A45DBE-E6B3-4308-B1FA-3CD8D9A914E5}"
+          DTS:From="Package\SQNC - MOVIMIENTOS CONTABLES\SQL - LIMPIAR MOVIMIENTOS CONTABLES"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SQNC - MOVIMIENTOS CONTABLES.PrecedenceConstraints[Restricción]"
+          DTS:CreationName=""
+          DTS:DTSID="{E944C0E0-4AF1-4A3E-9079-4F1FCE94159B}"
+          DTS:From="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Restricción"
+          DTS:To="Package\SQNC - MOVIMIENTOS CONTABLES\SQL - PASAR MOVIMIENTOS CONTABLES" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="249,42"
+          Id="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES"
+          TopLeft="23,107.5" />
+        <NodeLayout
+          Size="284,42"
+          Id="Package\SQNC - MOVIMIENTOS CONTABLES\SQL - LIMPIAR MOVIMIENTOS CONTABLES"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="275,42"
+          Id="Package\SQNC - MOVIMIENTOS CONTABLES\SQL - PASAR MOVIMIENTOS CONTABLES"
+          TopLeft="10.0000000000001,311.5" />
+        <EdgeLayout
+          Id="Package\SQNC - MOVIMIENTOS CONTABLES.PrecedenceConstraints[Constraint]"
+          TopLeft="147.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SQNC - MOVIMIENTOS CONTABLES.PrecedenceConstraints[Restricción]"
+          TopLeft="147.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,162"
+              Start="0,0"
+              End="0,154.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,154.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="295,408"
+          Size="295,452"
+          Id="Package\SQNC - MOVIMIENTOS CONTABLES"
+          TopLeft="5.50000000000006,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="267,42"
+          Id="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES"
+          TopLeft="35,5.5" />
+        <NodeLayout
+          Size="302,42"
+          Id="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES"
+          TopLeft="9.50000000000003,107.5" />
+        <EdgeLayout
+          Id="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES.Paths[ADO NET Source Output]"
+          TopLeft="164.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\ADO_SRC - MOVIMIENTOS CONTABLES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SQNC - MOVIMIENTOS CONTABLES\DFLW - MOVIMIENTOS CONTABLES\OLE_DST - DELTA MOVIMIENTOS_CONTABLES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
